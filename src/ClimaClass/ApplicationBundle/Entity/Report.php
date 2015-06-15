@@ -3,6 +3,7 @@
 namespace ClimaClass\ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Report
@@ -50,11 +51,20 @@ class Report
     private $lastModificationDate;
     
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="reports")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      **/
     private $user;
-
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Measure", mappedBy="report", cascade={"persist"})
+     **/
+    private $measures;
+    
+    public function __construct() {
+        $this->measures = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -178,5 +188,38 @@ class Report
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add measures
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Measure $measures
+     * @return Report
+     */
+    public function addMeasure(\ClimaClass\ApplicationBundle\Entity\Measure $measures)
+    {
+        $this->measures[] = $measures;
+
+        return $this;
+    }
+
+    /**
+     * Remove measures
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Measure $measures
+     */
+    public function removeMeasure(\ClimaClass\ApplicationBundle\Entity\Measure $measures)
+    {
+        $this->measures->removeElement($measures);
+    }
+
+    /**
+     * Get measures
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMeasures()
+    {
+        return $this->measures;
     }
 }

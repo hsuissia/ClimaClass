@@ -3,6 +3,7 @@
 namespace ClimaClass\ApplicationBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,7 +77,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="picture", type="string", length=255)
      */
-    private $picture;
+    private $picture = 'default.png';
     
     /**
      * @ORM\ManyToOne(targetEntity="Language")
@@ -93,9 +94,15 @@ class User extends BaseUser
      **/
     private $languages;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="user")
+     **/
+    private $reports;
+    
     public function __construct() {
         parent::__construct();
-        $this->languages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reports = new ArrayCollection();
+        $this->languages = new ArrayCollection();
     }
     /**
      * Get id
@@ -345,5 +352,38 @@ class User extends BaseUser
     public function getLanguages()
     {
         return $this->languages;
+    }
+
+    /**
+     * Add reports
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Report $reports
+     * @return User
+     */
+    public function addReport(\ClimaClass\ApplicationBundle\Entity\Report $reports)
+    {
+        $this->reports[] = $reports;
+
+        return $this;
+    }
+
+    /**
+     * Remove reports
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Report $reports
+     */
+    public function removeReport(\ClimaClass\ApplicationBundle\Entity\Report $reports)
+    {
+        $this->reports->removeElement($reports);
+    }
+
+    /**
+     * Get reports
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReports()
+    {
+        return $this->reports;
     }
 }

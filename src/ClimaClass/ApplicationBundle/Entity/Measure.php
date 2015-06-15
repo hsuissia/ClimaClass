@@ -57,7 +57,7 @@ class Measure
     private $measurementDate;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Report")
+     * @ORM\ManyToOne(targetEntity="Report", inversedBy="measures", cascade={"persist"})
      * @ORM\JoinColumn(name="id_report", referencedColumnName="id")
      **/
     private $report;

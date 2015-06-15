@@ -83,3 +83,6 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: ClimaClass\ApplicationBundle\Entity\User
+    registration:
+        form:
+            type: climaclass_user_registration

@@ -16,11 +16,13 @@ class AccueilController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForAccueil(6, 0);
+        $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForHomepage(6, 0);
+        
         if($request->isXmlHttpRequest()){
             $html = "";
-            $offset = $request->request->get('offset');
-            $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForAccueil(6, $offset);
+            $offset = $request->request->get('page') - 1;
+            
+            $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForHomepage(6, 6*$offset);
             foreach($reports as $report){
                 $html .= "<p>".$report->getTitle()."</p>";
             }
