@@ -1,6 +1,26 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-{%for report in reports%}
-    {{report.title}}
-{%endfor%}
+    <div class="pagination"
+         {%for report in reports%}
+             <p>{{report.title}}</p>
+         {%endfor%}
+    </div>
+    <span class="navigation" data-page="0">Previous</span> <span class="navigation" data-page="1">Next</span>
+    <script>
+        $(document).ready(function () {
+            $('.navigation').click(function () {
+                var page = $(this).data('page');
+                var offset = 6*parseInt(page);
+                $(this).find(".navigation").data('page',parseInt(page+1));
+                $.ajax({
+                    type: 'POST',
+                    data: {'offset': offset},
+                    url: "{{path('index') }}",
+                    success: function (response) {
+                        $('.pagination').html(response);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}
