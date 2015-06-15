@@ -24,14 +24,14 @@ class Measure
     /**
      * @var float
      *
-     * @ORM\Column(name="temperature", type="float")
+     * @ORM\Column(name="temperature", type="float", scale=2)
      */
     private $temperature;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="wind_speed", type="float")
+     * @ORM\Column(name="wind_speed", type="float", scale=2)
      */
     private $windSpeed;
 
@@ -48,6 +48,13 @@ class Measure
      * @ORM\Column(name="rain_level", type="integer")
      */
     private $rainLevel;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="measurement_date", type="datetime")
+     */
+    private $measurementDate;
     
     /**
      * @ORM\ManyToOne(targetEntity="Report")
@@ -155,5 +162,51 @@ class Measure
     public function getRainLevel()
     {
         return $this->rainLevel;
+    }
+
+    /**
+     * Set measurementDate
+     *
+     * @param \DateTime $measurementDate
+     * @return Measure
+     */
+    public function setMeasurementDate($measurementDate)
+    {
+        $this->measurementDate = $measurementDate;
+
+        return $this;
+    }
+
+    /**
+     * Get measurementDate
+     *
+     * @return \DateTime 
+     */
+    public function getMeasurementDate()
+    {
+        return $this->measurementDate;
+    }
+
+    /**
+     * Set report
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Report $report
+     * @return Measure
+     */
+    public function setReport(\ClimaClass\ApplicationBundle\Entity\Report $report = null)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\Report 
+     */
+    public function getReport()
+    {
+        return $this->report;
     }
 }

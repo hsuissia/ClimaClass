@@ -156,4 +156,27 @@ class Report
     {
         return $this->lastModificationDate;
     }
+
+    /**
+     * Set user
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\User $user
+     * @return Report
+     */
+    public function setUser(\ClimaClass\ApplicationBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

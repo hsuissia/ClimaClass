@@ -72,4 +72,50 @@ class Conversation
     {
         return $this->subject;
     }
+
+    /**
+     * Set user_creator
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\User $userCreator
+     * @return Conversation
+     */
+    public function setUserCreator(\ClimaClass\ApplicationBundle\Entity\User $userCreator = null)
+    {
+        $this->user_creator = $userCreator;
+
+        return $this;
+    }
+
+    /**
+     * Get user_creator
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\User 
+     */
+    public function getUserCreator()
+    {
+        return $this->user_creator;
+    }
+
+    /**
+     * Set user_recipient
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\User $userRecipient
+     * @return Conversation
+     */
+    public function setUserRecipient(\ClimaClass\ApplicationBundle\Entity\User $userRecipient = null)
+    {
+        $this->user_recipient = $userRecipient;
+
+        return $this;
+    }
+
+    /**
+     * Get user_recipient
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\User 
+     */
+    public function getUserRecipient()
+    {
+        return $this->user_recipient;
+    }
 }

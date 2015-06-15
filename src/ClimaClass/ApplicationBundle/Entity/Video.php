@@ -66,4 +66,27 @@ class Video
     {
         return $this->name;
     }
+
+    /**
+     * Set report
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Report $report
+     * @return Video
+     */
+    public function setReport(\ClimaClass\ApplicationBundle\Entity\Report $report = null)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\Report 
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
 }

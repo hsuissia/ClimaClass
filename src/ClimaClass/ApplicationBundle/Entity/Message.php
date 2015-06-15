@@ -103,4 +103,50 @@ class Message
     {
         return $this->postDate;
     }
+
+    /**
+     * Set conversation
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Conversation $conversation
+     * @return Message
+     */
+    public function setConversation(\ClimaClass\ApplicationBundle\Entity\Conversation $conversation = null)
+    {
+        $this->conversation = $conversation;
+
+        return $this;
+    }
+
+    /**
+     * Get conversation
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\Conversation 
+     */
+    public function getConversation()
+    {
+        return $this->conversation;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\User $user
+     * @return Message
+     */
+    public function setUser(\ClimaClass\ApplicationBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

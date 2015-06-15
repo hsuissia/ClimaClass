@@ -102,4 +102,50 @@ class Comment
     {
         return $this->postDate;
     }
+
+    /**
+     * Set report
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Report $report
+     * @return Comment
+     */
+    public function setReport(\ClimaClass\ApplicationBundle\Entity\Report $report = null)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\Report 
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\User $user
+     * @return Comment
+     */
+    public function setUser(\ClimaClass\ApplicationBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace ClimaClass\ApplicationBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ClimaClass\ApplicationBundle\Entity\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
@@ -19,7 +20,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -52,14 +53,14 @@ class User
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="latitude", type="float", scale=7)
      */
     private $latitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="longitude", type="float", scale=7)
      */
     private $longitude;
 
@@ -85,7 +86,7 @@ class User
     
     /**
      * @ORM\ManyToMany(targetEntity="Language")
-     * @ORM\JoinTable(name="Language",
+     * @ORM\JoinTable(name="user_language",
      *      joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="id_language", referencedColumnName="id")}
      *      )
@@ -93,6 +94,7 @@ class User
     private $languages;
     
     public function __construct() {
+        parent::__construct();
         $this->languages = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
@@ -287,5 +289,61 @@ class User
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set main_language
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Language $mainLanguage
+     * @return User
+     */
+    public function setMainLanguage(\ClimaClass\ApplicationBundle\Entity\Language $mainLanguage = null)
+    {
+        $this->main_language = $mainLanguage;
+
+        return $this;
+    }
+
+    /**
+     * Get main_language
+     *
+     * @return \ClimaClass\ApplicationBundle\Entity\Language 
+     */
+    public function getMainLanguage()
+    {
+        return $this->main_language;
+    }
+
+    /**
+     * Add languages
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Language $languages
+     * @return User
+     */
+    public function addLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages)
+    {
+        $this->languages[] = $languages;
+
+        return $this;
+    }
+
+    /**
+     * Remove languages
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Language $languages
+     */
+    public function removeLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages)
+    {
+        $this->languages->removeElement($languages);
+    }
+
+    /**
+     * Get languages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
     }
 }
