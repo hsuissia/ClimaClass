@@ -39,35 +39,35 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="establishment", type="string", length=255)
+     * @ORM\Column(name="establishment", type="string", length=255, nullable=true)
      */
     private $establishment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="class", type="string", length=255)
+     * @ORM\Column(name="class", type="string", length=255, nullable=true)
      */
     private $class;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="float", scale=7)
+     * @ORM\Column(name="latitude", type="float", scale=7, nullable=true)
      */
     private $latitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float", scale=7)
+     * @ORM\Column(name="longitude", type="float", scale=7, nullable=true)
      */
     private $longitude;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 

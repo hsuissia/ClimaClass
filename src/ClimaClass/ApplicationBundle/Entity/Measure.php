@@ -24,35 +24,35 @@ class Measure
     /**
      * @var float
      *
-     * @ORM\Column(name="temperature", type="float", scale=2)
+     * @ORM\Column(name="temperature", type="float", scale=2, nullable=true)
      */
     private $temperature;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="wind_speed", type="float", scale=2)
+     * @ORM\Column(name="wind_speed", type="float", scale=2, nullable=true)
      */
     private $windSpeed;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="wind_direction", type="integer")
+     * @ORM\Column(name="wind_direction", type="integer", nullable=true)
      */
     private $windDirection;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="rain_level", type="integer")
+     * @ORM\Column(name="rain_level", type="integer", nullable=true)
      */
     private $rainLevel;
     
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="measurement_date", type="datetime")
+     * @ORM\Column(name="measurement_date", type="datetime", nullable=true)
      */
     private $measurementDate;
     

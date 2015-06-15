@@ -1,0 +1,6 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+{%for report in reports%}
+    {{report.title}}
+{%endfor%}
+{% endblock %}

@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReportRepository extends EntityRepository
 {
+    public function findReportForAccueil($limit, $offset){
+        return $this->getEntityManager()
+        ->createQuery("SELECT r
+                    FROM ClimaClassApplicationBundle:Report r
+                    ")
+        ->setMaxResults($limit)
+        ->setFirstResult($offset)
+        ->getResult();
+    }
 }
