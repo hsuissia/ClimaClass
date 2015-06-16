@@ -7,9 +7,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use ClimaClass\ApplicationBundle\Form\ReportType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use ClimaClass\ApplicationBundle\Entity\Report;
 use ClimaClass\ApplicationBundle\Form\CommentType;
 use ClimaClass\ApplicationBundle\Entity\Comment;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
 class ReportController extends Controller
 {
     /**
@@ -75,6 +78,9 @@ class ReportController extends Controller
     public function editReportAction(Request $request,$id)
     {  
        $report = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->find($id);
+       if($report->getUser() != $this->getUser()){
+           throw new AccessDeniedHttpException('Vous n\'avez pas l\'accès a cette page.');
+       }
        $form = $this->createForm(new ReportType(),$report);
        $form->add('Save','submit');
        $form->handleRequest($request);
@@ -97,5 +103,39 @@ class ReportController extends Controller
            $em->flush();
        }
        return array('form' => $form->createView());      
+    }
+    // A GERER A LA FIN
+    /**
+     * @Route("/delete_video", name="delete_video")
+     * @Template("")
+     */
+    public function deleteVideoAction(Request $request)
+    {  
+       if($request->isXmlHttpRequest()){
+            
+            $id_vid = $request->request->get('id');
+            $video = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Video")->find($id_vid);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($video);
+            $em->flush();
+            return new Response("ok");
+        }  
+    }
+    
+    /**
+     * @Route("/delete_measure", name="delete_measure")
+     * @Template("")
+     */
+    public function deleteMeasureAction(Request $request)
+    {  
+       if($request->isXmlHttpRequest()){
+            
+            $id_measure = $request->request->get('id');
+            $measure = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Measure")->find($id_measure);
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($measure);
+            $em->flush();
+            return new Response("ok");
+        }  
     }
 }

@@ -1,0 +1,133 @@
+body
+{
+	text-decoration: none;
+}
+
+a:link
+{
+	text-decoration: none;
+}
+
+
+#menu
+{
+	background: blue;
+	border-bottom: 2px solid #8bc34a;
+}
+
+footer
+{
+	background: #767676;
+	text-align: center;
+	color: #FFF;
+}
+
+footer li
+{
+	list-style-type:none;
+}
+
+.button
+{
+	padding: 3px;
+	border: 2px solid #FFF;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.button > a
+{
+	color: #FFF;
+}
+
+.button:hover
+{
+	padding: 3px;
+	border: 2px solid #FFF;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+	transition : 0.1s;
+}
+
+.button:hover > a
+{
+	color: #FFF;
+	transition : 0.1s;
+}
+
+.buttong
+{
+	padding: 3px;
+	border: 2px solid #8bc34a;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.buttong > a
+{
+	color: #8bc34a;
+}
+
+.buttong:hover
+{
+	padding: 3px;
+	border: 2px solid #8bc34a;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+	transition : 0.1s;
+}
+
+.buttong:hover > a
+{
+	color: #8bc34a;
+	transition : 0.1s;
+}
+
+.navbar-brand
+{
+	height: auto;
+	padding: 2px 15px;
+}
+
+.thumbnail
+{
+	border-radius: 0px;
+	background-color: #00a8ff;
+	margin-bottom: 70px;
+	padding: 0px; 
+}
+
+.thumbnail > div > h3, p
+{
+	color: white;
+}
+
+.square
+{
+	background-color: #8bc34a;
+}
+
+.navbar
+{
+	border-bottom: 2px solid #8bc34a;
+}
+
+.navbar-default
+{
+	background-color: #FFF;
+}
+
+.cl-indicator
+{
+	border-bottom: 1px dashed #FFF;
+	color: #FFF;
+}
+
+#pagination
+{
+	text-align: center;
+}

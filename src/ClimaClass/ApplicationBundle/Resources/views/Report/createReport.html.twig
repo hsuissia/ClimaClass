@@ -1,7 +1,7 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
     {{form(form)}}
-
+       
     <script>
         $(document).ready(function () {            
             
@@ -38,8 +38,6 @@
             var indexMeasure = $containerMeasure.find(':input').length;
             
             if (indexMeasure == 0) {
-                addCategoryMeasure($containerMeasure);
-            } else {
                 $containerMeasure.children('div').each(function () {
                     addDeleteLinkMeasure($(this));
                 });
@@ -83,9 +81,7 @@
 
             var indexVideo = $containerVideo.find(':input').length;
             
-            if (indexVideo == 0) {
-                addCategoryVideo($containerVideo);
-            } else {
+            if (indexVideo != 0) {
                 $containerVideo.children('div').each(function () {
                     addDeleteLinkVideo($(this));
                 });
@@ -102,7 +98,7 @@
 
             function addDeleteLinkVideo($prototype) {
                 $deleteLink = $('<a href="#" class="btn btn-danger">Delete</a>');
-
+                
                 $prototype.append($deleteLink);
 
                 $deleteLink.click(function (e) {
@@ -115,4 +111,5 @@
            
         });
     </script>
+    
 {% endblock %}

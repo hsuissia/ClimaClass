@@ -1,6 +1,6 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    <p>{{report.title}}</p>
+    <p>{{report.title}} {%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}</p>
     <p>{{report.content|raw }}</p>
     <h2>Measures</h2>
 

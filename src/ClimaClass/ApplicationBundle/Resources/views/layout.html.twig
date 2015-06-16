@@ -1,17 +1,232 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <link href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}" rel="stylesheet">
-        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-       
+        <meta charset="utf-8">
+        <title>Titre de la page</title>
+        <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
+        <script src="{{asset('bundles/climaclassapplication/js/jquery-1.11.3.min.js')}}"></script>
+        <script src="{{asset('bundles/climaclassapplication/js/bootstrap.min.js')}}"></script>
     </head>
     <body>
-        <p> NAVBAR ICI </p>
-        <p> SLIDER PHOTO ICI</p>
-        {% block content %}
-        {% endblock %}
-        <p> FOOTER ICI </p>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="{{asset('bundles/climaclassapplication/images/theme/logo.png')}}"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">One more separated link</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <div class="form-control buttong"><a href="">Compare</a></div>
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Sign In</button>
+                    </form>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container" role="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer class="col-xs-12">
+            <div class="container">
+                <div class="col-md-4">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li>lorem ipsum</li>
+                        <li>lorem ipsum</li>
+                    </ul>
+                </div>
+            </div>
+            <img src="{{asset('bundles/climaclassapplication/images/theme/UNESCO2.png')}}">
+        </footer>
         <script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
-        <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script>
+        <script>
+            (function ($) {
+                'use strict';
+
+                addXhrProgressEvent();
+
+                $.extend(true, $.trumbowyg, {
+                    langs: {
+                        en: {
+                            upload: "Upload",
+                            file: "File",
+                            uploadError: "Error"
+                        },
+                        sk: {
+                            upload: "Nahrať",
+                            file: "Súbor",
+                            uploadError: "Chyba"
+                        },
+                        fr: {
+                            upload: "Envoi",
+                            file: "Fichier",
+                            uploadError: "Erreur"
+                        },
+                        cs: {
+                            upload: "Nahrát obrázek",
+                            file: "Soubor",
+                            uploadError: "Chyba"
+                        }
+                    },
+                    upload: {
+                        serverPath: '{{asset('bundles/climaclassapplication/libraries/trumbowyg.upload.php')}}'
+                    },
+                    opts: {
+                        btnsDef: {
+                            upload: {
+                                func: function (params, tbw) {
+                                    var file,
+                                            pfx = tbw.o.prefix;
+
+                                    var $modal = tbw.openModalInsert(
+                                            // Title
+                                            tbw.lang.upload,
+                                            // Fields
+                                                    {
+                                                        file: {
+                                                            type: 'file',
+                                                            required: true
+                                                        },
+                                                        alt: {
+                                                            label: 'description'
+                                                        }
+                                                    },
+                                            // Callback
+                                            function () {
+                                                var data = new FormData();
+                                                data.append('fileToUpload', file);
+
+                                                if ($('.' + pfx + 'progress', $modal).length === 0)
+                                                    $('.' + pfx + 'modal-title', $modal)
+                                                            .after(
+                                                                    $('<div/>', {
+                                                                        'class': pfx + 'progress'
+                                                                    })
+                                                                    .append(
+                                                                            $('<div/>', {
+                                                                                'class': pfx + 'progress-bar'
+                                                                            })
+                                                                            )
+                                                                    );
+
+                                                $.ajax({
+                                                    url: $.trumbowyg.upload.serverPath,
+                                                    type: 'POST',
+                                                    data: data,
+                                                    cache: false,
+                                                    dataType: 'json',
+                                                    processData: false,
+                                                    contentType: false,
+                                                    progressUpload: function (e) {
+                                                        $('.' + pfx + 'progress-bar').stop().animate({
+                                                            width: Math.round(e.loaded * 100 / e.total) + '%'
+                                                        }, 200);
+                                                    },
+                                                    success: function (data) {
+                                                        if (data.message == "uploadSuccess") {
+                                                            tbw.execCmd('insertImage', data.file);
+                                                            setTimeout(function () {
+                                                                tbw.closeModal();
+                                                            }, 250);
+                                                        } else {
+                                                            tbw.addErrorOnModalField(
+                                                                    $('input[type=file]', $modal),
+                                                                    tbw.lang[data.message]
+                                                                    );
+                                                        }
+                                                    },
+                                                    error: function () {
+                                                        tbw.addErrorOnModalField(
+                                                                $('input[type=file]', $modal),
+                                                                tbw.lang.uploadError
+                                                                );
+                                                    }
+                                                });
+                                            }
+                                            );
+
+                                            $('input[type=file]').on('change', function (e) {
+                                                try {
+                                                    // If multiple files allowed, we just get the first.
+                                                    file = e.target.files[0];
+                                                } catch (err) {
+                                                    // In IE8, multiple files not allowed
+                                                    file = e.target.value;
+                                                }
+                                            });
+                                        },
+                                ico: 'insertImage'
+                            }
+                        }
+                    }
+                });
+
+
+                function addXhrProgressEvent() {
+                    if (!$.trumbowyg && !$.trumbowyg.addedXhrProgressEvent) {   // Avoid adding progress event multiple times
+                        var originalXhr = $.ajaxSettings.xhr;
+                        $.ajaxSetup({
+                            xhr: function () {
+                                var req = originalXhr(),
+                                        that = this;
+                                if (req && typeof req.upload == "object" && that.progressUpload !== undefined)
+                                    req.upload.addEventListener("progress", function (e) {
+                                        that.progressUpload(e);
+                                    }, false);
+
+                                return req;
+                            }
+                        });
+                        $.trumbowyg.addedXhrProgressEvent = true;
+                    }
+                }
+            })(jQuery);
+        </script>     
     </body>
 </html>

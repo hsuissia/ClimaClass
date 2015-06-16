@@ -300,4 +300,14 @@ class Report
     {
         return $this->comments;
     }
+    public function countMeasures()
+    {
+        return count($this->measures);
+    }
+    public function lastMeasure() {
+        if($this->countMeasures() > 1){
+            array_sort
+        }
+        return $this->measures[$this->countMeasures()-1];
+    }
 }
