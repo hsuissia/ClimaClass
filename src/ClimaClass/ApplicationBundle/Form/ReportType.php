@@ -21,6 +21,11 @@ class ReportType extends AbstractType {
                     'allow_add' => true,
                     'allow_delete' => true
                 ))
+                ->add('videos', 'collection', array(
+                    'type' => new VideoType(),
+                    'allow_add' => true,
+                    'allow_delete' => true
+                ))
         ;
     }
 

@@ -61,8 +61,20 @@ class Report
      **/
     private $measures;
     
+    /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="report", cascade={"persist"})
+     **/
+    private $videos;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="report", cascade={"persist"})
+     **/
+    private $comments;
+    
     public function __construct() {
         $this->measures = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
     
     /**
@@ -221,5 +233,71 @@ class Report
     public function getMeasures()
     {
         return $this->measures;
+    }
+
+    /**
+     * Add videos
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Video $videos
+     * @return Report
+     */
+    public function addVideo(\ClimaClass\ApplicationBundle\Entity\Video $videos)
+    {
+        $this->videos[] = $videos;
+
+        return $this;
+    }
+
+    /**
+     * Remove videos
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Video $videos
+     */
+    public function removeVideo(\ClimaClass\ApplicationBundle\Entity\Video $videos)
+    {
+        $this->videos->removeElement($videos);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Comment $comments
+     * @return Report
+     */
+    public function addComment(\ClimaClass\ApplicationBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Comment $comments
+     */
+    public function removeComment(\ClimaClass\ApplicationBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -1,0 +1,29 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+    <p>{{report.title}}</p>
+    <p>{{report.content|raw }}</p>
+    <h2>Measures</h2>
+
+    {%for measure in report.measures%}
+        <ul>
+            <li>{{measure.measurementDate|date('Y-m-d H:i:s')}}</li>
+            <li>{{measure.temperature}}°C</li>
+            <li>{{measure.rainLevel}} mm</li>
+            <li>{{measure.windSpeed}} km/h</li>
+            <li>{{measure.windDirection}}°</li>
+        </ul>
+    {%endfor%}
+
+    <h2>videos</h2>
+    <ul>
+        {%for video in report.videos%}
+            <li>{{video.name}}</li>
+            {%endfor%}
+    </ul>
+    <h2>Commentaires</h2>
+    {%for comment in report.comments%}
+        <p>{{comment.content}}</p>
+        <span>{{comment.user.lastname}} {{comment.user.firstname}} - {{comment.postDate|date('Y-m-d H:i:s')}}</span>
+    {%endfor%}
+    {{form(form)}}
+{% endblock %}

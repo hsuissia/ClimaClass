@@ -36,7 +36,7 @@ class Comment
     private $postDate;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Report")
+     * @ORM\ManyToOne(targetEntity="Report", inversedBy="comments",)
      * @ORM\JoinColumn(name="id_report", referencedColumnName="id")
      **/
     private $report;

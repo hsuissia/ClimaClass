@@ -1,13 +1,18 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    <p>Profil - Class of {{class.class}}</p>
+    <p>Profil - Class of {{class.class}} {%if app.user.id != id %} <a href="#">Send private message</a> {%endif%}</p>
     
     <p>School info</p>
     <p>{{class.lastname}} {{class.firstname}}</p>
     <p>{{class.description}} {%if app.user.id == id %} <a href="#">Change</a> {%endif%}</p>
     <br>
     <p>{{class.latitude}} {{class.longitude}}</p>
-    
+    <p>{{class.mainLanguage.language}}</p>
+    <ul>
+    {%for language in class.languages%}
+        <li>{{language.language}}</li>
+    {%endfor%}
+    </ul>
     <br>
     <ul>
     {%for report in class.reports%}

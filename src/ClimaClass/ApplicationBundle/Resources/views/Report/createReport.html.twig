@@ -1,122 +1,118 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
     {{form(form)}}
+
     <script>
-        $(document).ready(function () {
-            $('#climaclass_applicationbundle_report_content').trumbowyg();
-            // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-
-            var $container = $('div#climaclass_applicationbundle_report_measures');
-
-
-            // On ajoute un lien pour ajouter une nouvelle catégorie
-
-            var $addLink = $('<a href="#" id="add_measure" class="btn btn-default">Add new measures</a>');
-
-            $container.append($addLink);
-
-
-            // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
-
-            $addLink.click(function (e) {
-
-                addCategory($container);
-
-                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
-
-                return false;
-
+        $(document).ready(function () {            
+            
+            $('#climaclass_applicationbundle_report_content').trumbowyg({
+                btnsDef: {
+                    image: {
+                        dropdown: ['insertImage', 'upload'],
+                        ico: 'insertImage'
+                    }
+                },
+                btns: ['viewHTML',
+                    '|', 'formatting',
+                    '|', 'btnGrp-semantic',
+                    '|', 'link',
+                    '|', 'image',
+                    '|', 'btnGrp-justify',
+                    '|', 'btnGrp-lists',
+                    '|', 'horizontalRule']
             });
 
 
-            // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+            var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
 
-            var index = $container.find(':input').length;
+            var $addLinkMeasure = $('<a href="#" id="add_measure" class="btn btn-default">Add new measures</a>');
+            $containerMeasure.append($addLinkMeasure);
 
+            $addLinkMeasure.click(function (e) {
+                addCategoryMeasure($containerMeasure);
+                e.preventDefault();
 
-            // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+                return false;
+            });
 
-            if (index == 0) {
-
-                addCategory($container);
-
+            var indexMeasure = $containerMeasure.find(':input').length;
+            
+            if (indexMeasure == 0) {
+                addCategoryMeasure($containerMeasure);
             } else {
-
-                // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
-
-                $container.children('div').each(function () {
-
-                    addDeleteLink($(this));
-
+                $containerMeasure.children('div').each(function () {
+                    addDeleteLinkMeasure($(this));
                 });
-
             }
 
+            function addCategoryMeasure($containerMeasure) {
+                var $prototype = $($containerMeasure.attr('data-prototype').replace(/__name__label__/g, 'Measure n°' + (indexMeasure + 1)).replace(/__name__/g, indexMeasure));
 
-            // La fonction qui ajoute un formulaire Categorie
+                addDeleteLinkMeasure($prototype);
+                $containerMeasure.append($prototype);
 
-            function addCategory($container) {
-
-                // Dans le contenu de l'attribut « data-prototype », on remplace :
-
-                // - le texte "__name__label__" qu'il contient par le label du champ
-
-                // - le texte "__name__" qu'il contient par le numéro du champ
-
-                var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Measure n°' + (index + 1))
-
-                        .replace(/__name__/g, index));
-
-
-                // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-
-                addDeleteLink($prototype);
-
-
-                // On ajoute le prototype modifié à la fin de la balise <div>
-
-                $container.append($prototype);
-
-
-                // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-
-                index++;
-
+                indexMeasure++;
             }
 
-
-            // La fonction qui ajoute un lien de suppression d'une catégorie
-
-            function addDeleteLink($prototype) {
-
-                // Création du lien
-
+            function addDeleteLinkMeasure($prototype) {
                 $deleteLink = $('<a href="#" class="btn btn-danger">Delete</a>');
-
-
-                // Ajout du lien
 
                 $prototype.append($deleteLink);
 
-
-                // Ajout du listener sur le clic du lien
-
                 $deleteLink.click(function (e) {
-
                     $prototype.remove();
-
-                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    e.preventDefault();
 
                     return false;
-
                 });
+            }
+            
+            /****************************************************************************************/
+            
+            var $containerVideo = $('div#climaclass_applicationbundle_report_videos');
 
+            var $addLinkVideo = $('<a href="#" id="add_video" class="btn btn-default">Add new video</a>');
+            $containerVideo.append($addLinkVideo);
+
+            $addLinkVideo.click(function (e) {
+                addCategoryVideo($containerVideo);
+                e.preventDefault();
+
+                return false;
+            });
+
+            var indexVideo = $containerVideo.find(':input').length;
+            
+            if (indexVideo == 0) {
+                addCategoryVideo($containerVideo);
+            } else {
+                $containerVideo.children('div').each(function () {
+                    addDeleteLinkVideo($(this));
+                });
             }
 
+            function addCategoryVideo($containerVideo) {
+                var $prototype = $($containerVideo.attr('data-prototype').replace(/__name__label__/g, 'Video n°' + (indexVideo + 1)).replace(/__name__/g, indexVideo));
+
+                addDeleteLinkVideo($prototype);
+                $containerVideo.append($prototype);
+
+                indexVideo++;
+            }
+
+            function addDeleteLinkVideo($prototype) {
+                $deleteLink = $('<a href="#" class="btn btn-danger">Delete</a>');
+
+                $prototype.append($deleteLink);
+
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+                    e.preventDefault();
+
+                    return false;
+                });
+            }
+           
         });
-    </script>
-    <script type="text/javascript">
-
-
     </script>
 {% endblock %}
