@@ -1,0 +1,17 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+    <p>{{conversation.subject}}</p>
+    <p>Contributors : {{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}and {{conversation.userRecipient.lastname}} {{conversation.userRecipient.firstname}}</p>
+    
+    <p>{{conversation.messages[0].user.lastname}} {{conversation.messages[0].user.firstname}}<br />{{conversation.messages[0].body}}<br />{{conversation.messages[0].postDate|date('Y-m-d H:i:s')}}</p>
+    {%for message in conversation.messages%}
+        {%if loop.index0 != 0%}
+            <p>{{message.user.lastname}} {{message.user.firstname}}<br />{{message.body}}<br />{{message.postDate|date('Y-m-d H:i:s')}}</p>
+        {%endif%}
+    {%endfor%}
+
+    {%if app.user is not null %}
+        {{form(form)}}
+    {%endif%}
+    
+{% endblock %}

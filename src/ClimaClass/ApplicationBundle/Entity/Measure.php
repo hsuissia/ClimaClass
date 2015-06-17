@@ -57,6 +57,13 @@ class Measure
     private $measurementDate;
     
     /**
+     * @var integer
+     * 
+     * @ORM\Column(name="rain_measure_duration", type="integer",nullable=true)
+     */
+    private $rainMeasureDuration;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Report", inversedBy="measures", cascade={"persist"})
      * @ORM\JoinColumn(name="id_report", referencedColumnName="id")
      **/
@@ -210,4 +217,27 @@ class Measure
         return $this->report;
     }
     
+
+    /**
+     * Set rainMeasureDuration
+     *
+     * @param integer $rainMeasureDuration
+     * @return Measure
+     */
+    public function setRainMeasureDuration($rainMeasureDuration)
+    {
+        $this->rainMeasureDuration = $rainMeasureDuration;
+
+        return $this;
+    }
+
+    /**
+     * Get rainMeasureDuration
+     *
+     * @return integer 
+     */
+    public function getRainMeasureDuration()
+    {
+        return $this->rainMeasureDuration;
+    }
 }

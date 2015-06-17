@@ -14,8 +14,9 @@ class RegistrationFormType extends AbstractType {
                 ->add('firstname')
                 ->add('establishment')
                 ->add('class')
-                ->add('latitude')
-                ->add('longitude')
+                ->add('address')
+                ->add('latitude','hidden')
+                ->add('longitude','hidden')
                 ->add('main_language', 'entity', array('property' => 'language', "class" => 'ClimaClass\ApplicationBundle\Entity\Language'))
                 ->add('languages', 'entity', array('property' => 'language', "class" => 'ClimaClass\ApplicationBundle\Entity\Language', 'multiple' => true))
                 ->add('roles', 'collection', array(

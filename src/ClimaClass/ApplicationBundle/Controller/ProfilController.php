@@ -9,10 +9,10 @@ use ClimaClass\ApplicationBundle\Form\UserType;
 class ProfilController extends Controller
 {
     /**
-     * @Route("/profil/{id}", name="profil")
+     * @Route("/profile/{id}", name="profile")
      * @Template()
      */
-    public function viewProfilAction($id)
+    public function viewProfileAction($id)
     {
        $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
        return array('class' => $class,'id'=>$id);
@@ -20,10 +20,10 @@ class ProfilController extends Controller
     }
     
     /**
-     * @Route("/modify_profil/{id}", name="modify_profil")
+     * @Route("/modify_profile/{id}", name="modify_profile")
      * @Template()
      */
-    public function modifyProfilAction($id)
+    public function modifyProfileAction($id)
     {
        $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
        $form = $this->createForm(new UserType(),$class);

@@ -306,7 +306,7 @@ class Report
     }
     public function lastMeasure() {
         if($this->countMeasures() > 1){
-            array_sort
+            
         }
         return $this->measures[$this->countMeasures()-1];
     }

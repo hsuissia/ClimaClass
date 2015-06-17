@@ -1,6 +1,6 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    <p>Profil - Class of {{class.class}} {%if app.user.id != id %} <a href="#">Send private message</a> {%endif%}</p>
+    <p>Profile - Class of {{class.class}} {%if app.user is not null%}{%if app.user.id != id %} <a href="{{path('new_conversation',{'id_recipient':class.id})}}">Send private message</a> {%endif%}{%endif%}</p>
     
     <p>School info</p>
     <p>{{class.lastname}} {{class.firstname}}</p>

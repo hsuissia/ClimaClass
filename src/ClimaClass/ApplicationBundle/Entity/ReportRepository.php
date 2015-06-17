@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ReportRepository extends EntityRepository
 {
-    public function findReportForHomepage($limit, $offset){
+    public function findReportForHomepage(){
         $date = date('Y-m-d H:i:s');
         $date_month_prev = date("Y-m-d H:i:s",strtotime($date."- 1 months"));
         return $this->getEntityManager()
@@ -21,8 +21,6 @@ class ReportRepository extends EntityRepository
                     WHERE r.postDate BETWEEN :nowmonthprev AND :now")
         ->setParameter("now", $date)
         ->setParameter("nowmonthprev", $date_month_prev)
-        ->setMaxResults($limit)
-        ->setFirstResult($offset)
         ->getResult();
     }
 }

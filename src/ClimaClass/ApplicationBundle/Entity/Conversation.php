@@ -3,6 +3,7 @@
 namespace ClimaClass\ApplicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Conversation
@@ -32,13 +33,22 @@ class Conversation
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="id_user_creator", referencedColumnName="id")
      **/
-    private $user_creator;
+    private $userCreator;
     
     /**
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="id_user_recipient", referencedColumnName="id")
      **/
-    private $user_recipient;
+    private $userRecipient;
+     
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="conversation", cascade={"persist"})
+     **/
+    private $messages;
+    
+    public function __construct() {
+        $this->messages = new ArrayCollection();
+    }
     
     /**
      * Get id
@@ -81,7 +91,7 @@ class Conversation
      */
     public function setUserCreator(\ClimaClass\ApplicationBundle\Entity\User $userCreator = null)
     {
-        $this->user_creator = $userCreator;
+        $this->userCreator = $userCreator;
 
         return $this;
     }
@@ -93,7 +103,7 @@ class Conversation
      */
     public function getUserCreator()
     {
-        return $this->user_creator;
+        return $this->userCreator;
     }
 
     /**
@@ -104,7 +114,7 @@ class Conversation
      */
     public function setUserRecipient(\ClimaClass\ApplicationBundle\Entity\User $userRecipient = null)
     {
-        $this->user_recipient = $userRecipient;
+        $this->userRecipient = $userRecipient;
 
         return $this;
     }
@@ -116,6 +126,39 @@ class Conversation
      */
     public function getUserRecipient()
     {
-        return $this->user_recipient;
+        return $this->userRecipient;
+    }
+
+    /**
+     * Add messages
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Message $messages
+     * @return Conversation
+     */
+    public function addMessage(\ClimaClass\ApplicationBundle\Entity\Message $messages)
+    {
+        $this->messages[] = $messages;
+
+        return $this;
+    }
+
+    /**
+     * Remove messages
+     *
+     * @param \ClimaClass\ApplicationBundle\Entity\Message $messages
+     */
+    public function removeMessage(\ClimaClass\ApplicationBundle\Entity\Message $messages)
+    {
+        $this->messages->removeElement($messages);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

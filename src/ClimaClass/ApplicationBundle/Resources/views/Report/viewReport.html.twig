@@ -1,6 +1,6 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    <p>{{report.title}} {%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}</p>
+    <p>{{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</p>
     <p>{{report.content|raw }}</p>
     <h2>Measures</h2>
 
@@ -20,10 +20,16 @@
             <li>{{video.name}}</li>
             {%endfor%}
     </ul>
-    <h2>Commentaires</h2>
-    {%for comment in report.comments%}
-        <p>{{comment.content}}</p>
-        <span>{{comment.user.lastname}} {{comment.user.firstname}} - {{comment.postDate|date('Y-m-d H:i:s')}}</span>
-    {%endfor%}
-    {{form(form)}}
+    
+    {%if report.comments|length > 0 %}
+        <h2>Commentaires</h2>
+        {%for comment in report.comments%}
+            <p>{{comment.content}}</p>
+            <span>{{comment.user.lastname}} {{comment.user.firstname}} - {{comment.postDate|date('Y-m-d H:i:s')}}</span>
+        {%endfor%}
+    {%endif%}
+    {%if app.user is not null %}
+        {{form(form)}}
+    {%endif%}
+    
 {% endblock %}

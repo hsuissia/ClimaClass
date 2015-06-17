@@ -18,9 +18,11 @@ security:
                 provider: fos_userbundle
                 always_use_default_target_path : false
                 default_target_path: /index
+                failure_path: /index
+                use_referer: true
             logout:
                 path:   /logout
-                target: /login
+                target: /index
             anonymous: ~
 
     access_control:
@@ -28,4 +30,4 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/, role: ROLE_USER }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
