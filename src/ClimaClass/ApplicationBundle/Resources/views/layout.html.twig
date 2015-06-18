@@ -6,10 +6,13 @@
         <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/style.css')}}">
         <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
-        <script src="{{asset('bundles/climaclassapplication/js/jquery-1.11.3.min.js')}}"></script>
+		<script src="{{asset('bundles/climaclassapplication/js/jquery-1.11.3.min.js')}}"></script>
         <script src="{{asset('bundles/climaclassapplication/js/bootstrap.min.js')}}"></script>
+		
+<!-- Vérifier si utile
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+-->
         <style>
             p {
                 color: black !important;
@@ -76,6 +79,10 @@
             </div>
             <img src="{{asset('bundles/climaclassapplication/images/theme/UNESCO2.png')}}">
         </footer>
+		
+<!--
+	TODO(adrien): Enlever trumbowyg de la page d'accueil. Ne l'importer que sur le pages nécessaire.
+-->
         <script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
         <script>
             (function ($) {
