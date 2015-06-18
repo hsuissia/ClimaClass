@@ -1,6 +1,18 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    {{form(form)}}
+    {#{form_start(form)}}
+	
+		{{form_label(form.title)}}
+		{{form_errors(form.title)}}
+		{{form_widget(form.title)}}
+		
+		{{form_label(form.content)}}
+		{{form_errors(form.content)}}
+		{{form_widget(form.content)}}
+		
+	{{form_end(form)}#}
+	
+	{{form(form)}}
        
     <script>
         $(document).ready(function () {            
@@ -111,5 +123,8 @@
            
         });
     </script>
+	
+	<script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
+    <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script> 
     
 {% endblock %}
