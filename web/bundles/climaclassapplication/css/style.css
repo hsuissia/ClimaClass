@@ -7,7 +7,10 @@ a:link
 {
 	text-decoration: none;
 }
-
+.container[role=main]
+{
+	margin-bottom: 20px;
+}
 
 #menu
 {
@@ -131,3 +134,125 @@ footer li
 {
 	text-align: center;
 }
+
+.repport
+{
+
+	border: 5px solid #eeeeee;
+	color: black!important;
+}
+
+.green
+{
+	background-color: #8bc34a;
+	color: white;
+	padding: 5px;
+}
+
+.repport h1
+{
+	margin-top: 10px;
+}
+
+.repport p 
+{
+	color: black;
+}
+
+.indicators_view
+{
+	border: 5px solid #ceeda9;
+	padding: 5px;
+	color: black;
+	text-align: center;
+}
+
+.indicators_view p
+{
+	color: #00a8ff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+.indicators_view img
+{
+	width:35%;
+    height: auto;
+    overflow:hidden;
+}
+
+.indicators_add
+{
+	border: 5px solid #ceeda9;
+	padding: 5px;
+	color: black;
+	text-align: center;
+}
+
+.indicators_add p
+{
+	color: #00a8ff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 19px;
+}
+
+.video
+{	
+	text-align: center;
+}
+
+.video div
+{
+	margin-top: 15px;
+	width: 100%;
+	height: 300px;
+	background-color: #00a8ff;
+}
+
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  .indicators_view p {
+    font-size: 15px;
+  }
+  .indicators_view img{
+		width:100%;
+	    height: auto;
+	    overflow:hidden;
+	}
+}
+
+.trumbowyg-box, .trumbowyg-editor
+{
+	width: 100%!important;
+	margin: auto!important;
+}
+
+.green .form-control
+{
+	border-radius: 0!important;
+}
+
+.green .has-success, .form-control
+{
+	border-color: #FFF!important;
+}
+
+.green .form-group
+{
+	margin-bottom: 0px!important;
+}
+
+.indicators_back > .form-control, .has-success
+{
+	/*border-color: #8bc34a!important;
+	border: 1px solid #8bc34a!important;*/
+	border-radius: 0!important;
+}
+
+/*.indicators_back > .col-xs-11, .col-xs-2
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 0px;
+}*/
