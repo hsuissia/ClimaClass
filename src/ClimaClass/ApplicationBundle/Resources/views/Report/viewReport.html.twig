@@ -1,5 +1,65 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
+
+	<div class="repport col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 green">
+				<h1><img src="Increasing_stocks_graphic_of_bars_32.png"> {{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</h1>
+			</div>
+			<div class="col-xs-12">
+				{{report.content|raw }}
+			</div>
+		</div>
+	</div>
+	
+	<div class="indicators_view col-xs-12">
+{%for measure in report.measures%}	
+		<div class="col-xs-2 col-xs-offset-1">
+		{%if loop.index0 == 0%}
+			<p><img src="{{asset('bundles/climaclassapplication/images/theme/Calendar_64.png')}}"></p>
+		{%endif%}
+			<p>{{measure.measurementDate|date('Y-m-d')}}</p>
+		</div>
+		<div class="col-xs-2">
+		{%if loop.index0 == 0%}
+			<p><img src="{{asset('bundles/climaclassapplication/images/theme/Science_Thermometer_64.png')}}"></p>
+		{%endif%}
+			<p>{{measure.temperature}}°C</p>
+		</div>
+		<div class="col-xs-2">
+		{%if loop.index0 == 0%}
+			<p><img src="{{asset('bundles/climaclassapplication/images/theme/Raining_Dark_Cloud_64.png')}}"></p>
+		{%endif%}
+			<p>{{measure.rainLevel}} mm ({{measure.rainMeasureDuration}} days)</p>
+		</div>
+		<div class="col-xs-2">
+		{%if loop.index0 == 0%}
+			<p><img src="{{asset('bundles/climaclassapplication/images/theme/Wind_64.png')}}"></p>
+		{%endif%}
+			<p>{{measure.windSpeed}} km/h</p>
+		</div>
+		<div class="col-xs-2">
+		{%if loop.index0 == 0%}
+			<p><img src="{{asset('bundles/climaclassapplication/images/theme/Localization_orientation_tool_of_compass_with_cardinal_points_64.png')}}"></p>
+		{%endif%}
+			<p>{{measure.windDirection}}°</p>
+		</div>
+{%endfor%}
+	</div>
+
+           
+	<div class="row">
+		<div class="vcontainer col-xs-12">
+			<div class="row">
+{%for video in report.videos%}
+					<video controls preload="metadata" class="video col-md-4">
+						<source src="{{asset('bundles/climaclassapplication/videos/'~video.name)}}" type="video/mp4" />
+					</video>
+{%endfor%}
+			</div>
+		</div>
+	</div>
+{#
     <p>{{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</p>
     <p>{{report.content|raw }}</p>
     <h2>Measures</h2>
@@ -31,5 +91,5 @@
     {%if app.user is not null %}
         {{form(form)}}
     {%endif%}
-    
+#}    
 {% endblock %}
