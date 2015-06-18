@@ -1,22 +1,74 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    {#{form_start(form)}}
+    {{form_start(form)}}
 	
-		{{form_label(form.title)}}
-		{{form_errors(form.title)}}
-		{{form_widget(form.title)}}
-		
-		{{form_label(form.content)}}
-		{{form_errors(form.content)}}
-		{{form_widget(form.content)}}
-		
-	{{form_end(form)}#}
+	<div class="repport col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 green">
+				<div class="col-xs-1">
+					<img src="{{asset('bundles/climaclassapplication/images/theme/Pen_on_square_of_paper_interface_symbol_32.png')}}" width="32px" height="32px">
+				</div>
+				<div class="form-group has-success col-xs-11">
+					{{form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder' : 'Title'}})}}
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
+			{{form_widget(form.content,{'attr': {'class':'col-xs-12'}})}}
+		</div>
+	</div>
 	
-	{{form(form)}}
+	
+	<div class="indicators_add col-xs-12" id="indicators_tag" style="margin-top: 10px;">
+	{{form_widget(form.measures)}}
+		<div class="indicators_back col-md-2">
+			<div class="has-success">
+				<label class="control-label" for="inputSuccess1">Rain</label>						  
+				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="has-success">
+				<label class="control-label" for="inputSuccess1">Temperature</label>						  
+				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="has-success">
+				<label class="control-label" for="inputSuccess1">Wind</label>						  
+				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="has-success">
+				<label class="control-label" for="inputSuccess1">Wind direction</label>						  
+				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="has-success">
+				<label class="control-label" for="inputSuccess1">Date</label>						  
+				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+			</div>
+		</div>
+		<div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>
+	</div>
+	<div class="col-xs-12" style="text-align:center; margin-top: 10px;"><img id="add" src="{{asset('bundles/climaclassapplication/images/theme/add.png')}}"></div>
+	<div class="col-xs-12">
+		<div class="has-success">
+			<label class="control-label" for="inputSuccess1">Video</label>						  
+			<input type="file" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+		</div>
+	</div>
+	<p><div class="buttong col-xs-12"><a href="">Save</a></div></p>
+		
+	{{form_end(form)}}
+	
+	{#{form(form)}#}
        
     <script>
         $(document).ready(function () {            
-            
             $('#climaclass_applicationbundle_report_content').trumbowyg({
                 btnsDef: {
                     image: {
@@ -34,21 +86,17 @@
                     '|', 'horizontalRule']
             });
 
-
             var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
-
             var $addLinkMeasure = $('<a href="#" id="add_measure" class="btn btn-default">Add new measures</a>');
             $containerMeasure.append($addLinkMeasure);
 
             $addLinkMeasure.click(function (e) {
                 addCategoryMeasure($containerMeasure);
                 e.preventDefault();
-
                 return false;
             });
 
-            var indexMeasure = $containerMeasure.find(':input').length;
-            
+            var indexMeasure = $containerMeasure.find(':input').length;            
             if (indexMeasure == 0) {
                 $containerMeasure.children('div').each(function () {
                     addDeleteLinkMeasure($(this));
@@ -57,22 +105,18 @@
 
             function addCategoryMeasure($containerMeasure) {
                 var $prototype = $($containerMeasure.attr('data-prototype').replace(/__name__label__/g, 'Measure n°' + (indexMeasure + 1)).replace(/__name__/g, indexMeasure));
-
+                //var $prototype = $('<div class="indicators_back col-md-2"><div class="has-success"><label class="control-label" for="climaclass_applicationbundle_report_measures___name___temperature">Temperature</label>  <input type="text" class="form-control" id="climaclass_applicationbundle_report_measures___name___temperature" name="climaclass_applicationbundle_report[measures][__name__][temperature]" placeholder="Your Measures here !"></div></div><div class="col-md-2"><div class="has-success"><label class="control-label" for="inputSuccess1">Rain</label>  <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !"></div></div><div class="col-md-2"><div class="has-success"><label class="control-label" for="climaclass_applicationbundle_report_measures___name___windSpeed">Wind</label>  <input type="text" class="form-control" id="climaclass_applicationbundle_report_measures___name___windSpeed" name="climaclass_applicationbundle_report[measures][__name__][windSpeed] placeholder="Your Measures here !"></div></div><div class="col-md-2"><div class="has-success"><label class="control-label" for="climaclass_applicationbundle_report_measures___name___windDirection">Wind direction</label>  <input type="text" class="form-control" id="climaclass_applicationbundle_report_measures___name___windDirection" name="climaclass_applicationbundle_report[measures][__name__][windDirection]" placeholder="Your Measures here !"></div></div><div class="col-md-2"><div class="has-success"><label class="control-label" for="inputSuccess1">Date</label>  <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !"></div></div><div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset("bundles/climaclassapplication/images/theme/delete.png")}}"></div>');
                 addDeleteLinkMeasure($prototype);
                 $containerMeasure.append($prototype);
-
                 indexMeasure++;
             }
 
             function addDeleteLinkMeasure($prototype) {
                 $deleteLink = $('<a href="#" class="btn btn-danger">Delete</a>');
-
                 $prototype.append($deleteLink);
-
                 $deleteLink.click(function (e) {
                     $prototype.remove();
                     e.preventDefault();
-
                     return false;
                 });
             }
@@ -80,19 +124,14 @@
             /****************************************************************************************/
             
             var $containerVideo = $('div#climaclass_applicationbundle_report_videos');
-
             var $addLinkVideo = $('<a href="#" id="add_video" class="btn btn-default">Add new video</a>');
             $containerVideo.append($addLinkVideo);
-
             $addLinkVideo.click(function (e) {
                 addCategoryVideo($containerVideo);
                 e.preventDefault();
-
                 return false;
             });
-
-            var indexVideo = $containerVideo.find(':input').length;
-            
+            var indexVideo = $containerVideo.find(':input').length;            
             if (indexVideo != 0) {
                 $containerVideo.children('div').each(function () {
                     addDeleteLinkVideo($(this));
@@ -101,26 +140,20 @@
 
             function addCategoryVideo($containerVideo) {
                 var $prototype = $($containerVideo.attr('data-prototype').replace(/__name__label__/g, 'Video n°' + (indexVideo + 1)).replace(/__name__/g, indexVideo));
-
                 addDeleteLinkVideo($prototype);
                 $containerVideo.append($prototype);
-
                 indexVideo++;
             }
 
             function addDeleteLinkVideo($prototype) {
                 $deleteLink = $('<a href="#" class="btn btn-danger">Delete</a>');
-                
                 $prototype.append($deleteLink);
-
                 $deleteLink.click(function (e) {
                     $prototype.remove();
                     e.preventDefault();
-
                     return false;
                 });
-            }
-           
+            }           
         });
     </script>
 	
