@@ -30,7 +30,6 @@ class MessageController extends Controller {
         $conversation = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->find($id);
         $message = new Message();
         $form = $this->createForm(new MessageType(), $message);
-        $form->get('message')->set($message);
         $form->add('Send', 'submit');
         $form->handleRequest($request);
 
@@ -41,34 +40,42 @@ class MessageController extends Controller {
             $message->setPostDate(new \DateTime(date('Y-m-d H:i:s')));
             $em->persist($message);
             $em->flush();
-            return $this->redirect($this->generateUrl('display_conversation',array('id'=>$id)));
+            return $this->redirect($this->generateUrl('display_conversation', array('id' => $id)));
         }
         return array('conversation' => $conversation, 'form' => $form->createView());
     }
-    
-     /**
+
+    /**
      * @Route("/new_conversation/{id_recipient}", name="new_conversation")
      * @Template()
      */
     public function newConversationAction(Request $request, $id_recipient) {
         $conversation = new Conversation();
-        $user_recipient=$this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id_recipient);
-        $form = $this->createForm(new ConversationType(), $conversation);
-        $form->add('Send', 'submit');
-        $form->handleRequest($request);
+        $message = new Message();
+        $user_recipient = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id_recipient);
+        $form = $this->createFormBuilder()
+                ->add('subject', 'text', array('required' => true))
+                ->add('body','textarea',array('required'=>true))
+                ->add('Send', 'submit');
+        $form = $form->getForm();
 
+        $form->handleRequest($request);
+        $data = $form->getData();
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $conversation->setUserCreator($this->getUser());
             $conversation->setUserRecipient($user_recipient);
-            $conversation->getMessages()->setUser($this->getUser());
-            $conversation->getMessages()->setPostDate(new \DateTime(date('Y-m-d H:i:s')));
+            $conversation->setSubject($data['subject']);
             $em->persist($conversation);
+            $message->setConversation($conversation);
+            $message->setUser($this->getUser());
+            $message->setPostDate(new \DateTime(date('Y-m-d H:i:s')));
+            $message->setBody($data['body']);
+            $em->persist($message);
             $em->flush();
-            return $this->redirect($this->generateUrl('profile',array('id'=>$id_recipient)));
+            return $this->redirect($this->generateUrl('profile', array('id' => $id_recipient)));
         }
         return array('form' => $form->createView());
     }
-    
 
 }

@@ -5,7 +5,7 @@ namespace ClimaClass\ApplicationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use ClimaClass\ApplicationBundle\Form\UserType;
+use ClimaClass\ApplicationBundle\Form\AccountType;
 class ProfilController extends Controller
 {
     /**
@@ -20,14 +20,15 @@ class ProfilController extends Controller
     }
     
     /**
-     * @Route("/modify_profile/{id}", name="modify_profile")
+     * @Route("/my_account/{id}", name="my_account")
      * @Template()
      */
-    public function modifyProfileAction($id)
+    public function myAccountAction($id)
     {
        $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
-       $form = $this->createForm(new UserType(),$class);
-       return array('form' => $form,'id'=>$id);
+       $form = $this->createForm(new AccountType(),$class);
+       $form->add('Submit','submit');
+       return array('form' => $form->createView(),'id'=>$id);
        
     }
 }
