@@ -4,18 +4,29 @@ namespace ClimaClass\ApplicationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
 class AccountType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         // add your custom field
         $builder
+                ->remove('current_password')
+                ->remove('username')
+                ->add('plainPassword', 'repeated', array(
+                    'type' => 'password',
+                    'required'=>false,
+                    'options' => array('translation_domain' => 'FOSUserBundle'),
+                    'first_options' => array('label' => 'form.new_password'),
+                    'second_options' => array('label' => 'form.new_password_confirmation'),
+                    'invalid_message' => 'fos_user.password.mismatch',
+                ))
                 ->add('establishment')
                 ->add('class')
                 ->add('lastname')
                 ->add('firstname')
                 ->add('description')
-                ->add('file','file',array('required'=>false))
+                ->add('file', 'file', array('required' => false))
                 ->add('main_language', 'entity', array('property' => 'language', "class" => 'ClimaClass\ApplicationBundle\Entity\Language'))
                 ->add('languages', 'entity', array('property' => 'language', "class" => 'ClimaClass\ApplicationBundle\Entity\Language', 'multiple' => true))
         ;

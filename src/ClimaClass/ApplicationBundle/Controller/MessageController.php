@@ -14,7 +14,7 @@ use ClimaClass\ApplicationBundle\Entity\Conversation;
 class MessageController extends Controller {
 
     /**
-     * @Route("/list_conversation", name="liste_conversation")
+     * @Route("/conversation/list_conversation", name="liste_conversation")
      * @Template()
      */
     public function listPrivateMessageAction(Request $request) {
@@ -46,7 +46,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/new_conversation/{id_recipient}", name="new_conversation")
+     * @Route("/conversation/new_conversation/{id_recipient}", name="new_conversation")
      * @Template()
      */
     public function newConversationAction(Request $request, $id_recipient) {

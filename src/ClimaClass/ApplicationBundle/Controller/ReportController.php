@@ -41,7 +41,7 @@ class ReportController extends Controller
     }
     
     /**
-     * @Route("/create_report", name="create_report")
+     * @Route("/manage_report/create_report", name="create_report")
      * @Template()
      */
     public function createReportAction(Request $request)
@@ -72,7 +72,7 @@ class ReportController extends Controller
     }
     
     /**
-     * @Route("/edit_report/{id}", name="edit_report")
+     * @Route("/manage_report/edit_report/{id}", name="edit_report")
      * @Template("ClimaClassApplicationBundle:Report:createReport.html.twig")
      */
     public function editReportAction(Request $request,$id)
