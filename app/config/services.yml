@@ -8,3 +8,7 @@ services:
         class: ClimaClass\ApplicationBundle\Form\RegistrationFormType
         tags:
             - { name: form.type, alias: climaclass_user_registration }
+    climaclass.profile.form.type:
+        class: ClimaClass\ApplicationBundle\Form\AccountType
+        tags:
+            - { name: form.type, alias: climaclass_user_profile }

@@ -44,7 +44,7 @@
                         {% render controller("FOSUserBundle:Security:login") %}
                     {%else%}
                         <a href="{{ path('fos_user_security_logout') }}" class="navbar-right btn btn-primary navbar-btn">Logout</a>
-                        <a href="#" class="navbar-right btn btn-success navbar-btn" style="margin-right: 10px;"><span class="glyphicon glyphicon-user"></span>{{app.user.lastname}} {{app.user.firstname}}</a>
+                        <a href="{{ path('my_account',{'id':app.user.id}) }}" class="navbar-right btn btn-success navbar-btn" style="margin-right: 10px;"><span class="glyphicon glyphicon-user"></span>{{app.user.lastname}} {{app.user.firstname}}</a>
                     {%endif%}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
