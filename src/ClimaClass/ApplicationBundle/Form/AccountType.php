@@ -12,11 +12,14 @@ class AccountType extends AbstractType {
         // add your custom field
         $builder
                 ->remove('current_password')
-                ->add('current_password', 'password', array(
-                    'label' => 'password',
-                    'translation_domain' => 'FOSUserBundle',
-                    'mapped' => false,
-                    'constraints' => new UserPassword(),
+                ->remove('username')
+                ->add('plainPassword', 'repeated', array(
+                    'type' => 'password',
+                    'required'=>false,
+                    'options' => array('translation_domain' => 'FOSUserBundle'),
+                    'first_options' => array('label' => 'form.new_password'),
+                    'second_options' => array('label' => 'form.new_password_confirmation'),
+                    'invalid_message' => 'fos_user.password.mismatch',
                 ))
                 ->add('establishment')
                 ->add('class')

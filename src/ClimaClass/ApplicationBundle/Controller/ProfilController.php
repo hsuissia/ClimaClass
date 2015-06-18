@@ -34,6 +34,7 @@ class ProfilController extends Controller
        if($form->isValid()){
            $em = $this->getDoctrine()->getManager();
            $class->upload();
+           /*plainPassword*/
            $em->persist($class);
            $em->flush();
        }
