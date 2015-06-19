@@ -4,15 +4,17 @@
 	<div class="repport col-xs-12">
 		<div class="row">
 			<div class="col-xs-12 green">
-				<h1><img src="Increasing_stocks_graphic_of_bars_32.png"> {{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</h1>
+				<h1><img src="{{asset('bundles/climaclassapplication/images/theme/Increasing_stocks_graphic_of_bars_32.png')}}"> {{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</h1>
 			</div>
 			<div class="col-xs-12">
 				{{report.content|raw }}
 			</div>
 		</div>
 	</div>
-	
+
+{%if report.measures|length > 0 %}	
 	<div class="indicators_view col-xs-12">
+	<h2>Measures</h2>
 {%for measure in report.measures%}	
 		<div class="col-xs-2 col-xs-offset-1">
 		{%if loop.index0 == 0%}
@@ -46,8 +48,10 @@
 		</div>
 {%endfor%}
 	</div>
+{%endif%}
 
-           
+{%if report.videos|length > 0 %}
+    <h2>Videos</h2>
 	<div class="row">
 		<div class="vcontainer col-xs-12">
 			<div class="row">
@@ -59,37 +63,37 @@
 			</div>
 		</div>
 	</div>
-{#
-    <p>{{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</p>
-    <p>{{report.content|raw }}</p>
-    <h2>Measures</h2>
-
-    {%for measure in report.measures%}
-        <ul>
-            <li>{{measure.measurementDate|date('Y-m-d H:i:s')}}</li>
-            <li>{{measure.temperature}}°C</li>
-            <li>{{measure.rainLevel}} mm</li>
-            <li>{{measure.windSpeed}} km/h</li>
-            <li>{{measure.windDirection}}°</li>
-        </ul>
-    {%endfor%}
-
-    <h2>videos</h2>
-    <ul>
-        {%for video in report.videos%}
-            <li>{{video.name}}</li>
-            {%endfor%}
-    </ul>
-    
-    {%if report.comments|length > 0 %}
-        <h2>Commentaires</h2>
-        {%for comment in report.comments%}
-            <p>{{comment.content}}</p>
-            <span>{{comment.user.lastname}} {{comment.user.firstname}} - {{comment.postDate|date('Y-m-d H:i:s')}}</span>
+{%endif%}
+	
+	<h2>Comments</h2>
+{%if report.comments|length > 0 %}
+	<div class="col-xs-12 comment">
+        {%for comment in report.comments%}			
+		<div class="row">
+			<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+			<div class="col-xs-11 nopadding">
+				<p>{{comment.content}}</p>
+			</div>
+			<div class="col-md-12">
+				<p>{{comment.user.lastname}} {{comment.user.firstname}} - {{comment.postDate|date('Y-m-d')}}</p>
+			</div>
+		</div>
         {%endfor%}
-    {%endif%}
+	</div>
+{%endif%}
+	
     {%if app.user is not null %}
-        {{form(form)}}
+	<div class="col-xs-12 comment" role="main">
+		<div class="row">
+			<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+			<div class="col-xs-11 nopadding">
+			{{form_start(form)}}
+				{{form_widget(form.content, {'attr': {'class': 'form-control', 'rows' : '3'}})}}
+				{{form_widget(form.Send, {'attr': {'class': 'btn btn-default'}})}}
+			{{form_end(form)}}
+			</div>
+		</div>
+	</div>		
     {%endif%}
-#}    
+
 {% endblock %}

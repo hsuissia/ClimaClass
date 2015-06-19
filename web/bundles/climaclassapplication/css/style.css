@@ -256,3 +256,60 @@ footer li
 	padding-bottom: 5px;
 	padding-right: 0px;
 }*/
+
+.comment p
+{
+	color: black;
+}
+
+.comment
+{
+	margin-top: 15px;
+}
+
+.avatar
+{
+	margin: auto;
+	text-align: center;
+	border-right: 2px solid #00a8ff;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.comment textarea
+{
+	border: 1px solid #8bc34a!important;
+}
+
+.blue
+{
+	background-color: #00a8ff;
+
+}
+
+.blue h3
+{
+	color: #FFF;
+	font-size: 30px;
+	margin-top: 10px;
+}
+
+.grey
+{
+	background-color: #eeeeee;
+	margin-bottom: 10px;
+}
+
+.grey p 
+{
+	color: 
+}
+
+.greyInput
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
