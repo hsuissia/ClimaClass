@@ -1,9 +1,21 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    {%for conversation in conversations%}
-        <p><a href="{{path('display_conversation',{'id':conversation.id})}}">{{conversation.subject}}</a></p>
-        <p>{{conversation.messages[0].postDate|date('Y-m-d H:i:s')}}</p>
-        <p>{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}</p>
-    {%endfor%}
-    
+			<div class="col-xs-12">
+				<div class="blue col-xs-12">
+					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> Conversations</h3>
+				</div>
+				<div class="col-xs-12 grey">
+				{%for conversation in conversations%}
+					<div class="col-xs-12 comment conversation">
+						<div class="row">
+							<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+							<div class="col-xs-11 nopadding">
+								<h3><a href="{{path('display_conversation',{'id':conversation.id})}}">{{conversation.subject}}</a></h3>
+								<p>{{conversation.messages[0].postDate|date('Y-m-d')}} - <strong><p>{%if conversation.userCreator is not null %}{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
+							</div>
+						</div>
+					</div>
+				{%endfor%}
+				</div>
+			</div>    
 {% endblock %}
