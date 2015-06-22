@@ -1,0 +1,37 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+    {{form_start(form)}}
+    {{form_label(form.admin)}}
+    {{form_widget(form.admin)}}
+    {{form_errors(form.admin)}}
+
+    {{form_label(form.subject)}}
+    {{form_widget(form.subject)}}
+    {{form_errors(form.subject)}}
+
+    {{form_label(form.body)}}
+    {{form_widget(form.body)}}
+    {{form_errors(form.body)}}
+
+    {%if app.user is null%}
+        {{form_label(form.mail)}}
+        {{form_widget(form.mail)}}
+        {{form_errors(form.mail)}}
+    {%endif%}
+    {{form_widget(form.Send)}}
+    
+    {{ form_widget(form._token) }}
+    {{form_end(form, {'render_rest': false}) }}
+
+
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script>
+        $(document).ready(function () {
+        {%if app.user is null%}
+                $('#form_mail').prop('required', true);
+        {%endif%}
+            });
+    </script>
+{% endblock %}

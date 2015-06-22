@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="ClimaClass\ApplicationBundle\Entity\UserRepository")
  */
-class User extends BaseUser
-{
+class User extends BaseUser {
+
     /**
      * @var integer
      *
@@ -51,14 +51,13 @@ class User extends BaseUser
      * @ORM\Column(name="class", type="string", length=255, nullable=true)
      */
     private $class;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
      */
     private $address;
-      
 
     /**
      * @var float
@@ -87,29 +86,28 @@ class User extends BaseUser
      * @ORM\Column(name="picture", type="string", length=255)
      */
     private $picture = 'default.png';
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Language")
      * @ORM\JoinColumn(name="main_language", referencedColumnName="id")
-     **/
+     * */
     private $main_language;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Language")
      * @ORM\JoinTable(name="user_language",
      *      joinColumns={@ORM\JoinColumn(name="id_user", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="id_language", referencedColumnName="id")}
      *      )
-     **/
+     * */
     private $languages;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Report", mappedBy="user")
-     **/
+     * */
     private $reports;
-    
     private $file;
-    
+
     public function getFile() {
 
         return $this->file;
@@ -135,10 +133,9 @@ class User extends BaseUser
 
         // On sauvegarde le nom de fichier dans notre attribut $url
         $this->picture = $name;
-
     }
-    
-     public function getUploadDir() {
+
+    public function getUploadDir() {
         // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
         return 'bundles/climatclassapplication/images/users';
     }
@@ -147,19 +144,19 @@ class User extends BaseUser
         // On retourne le chemin relatif vers l'image pour notre code PHP
         return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
-    
+
     public function __construct() {
         parent::__construct();
         $this->reports = new ArrayCollection();
         $this->languages = new ArrayCollection();
     }
+
     /**
      * Get id
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -169,8 +166,7 @@ class User extends BaseUser
      * @param string $lastname
      * @return User
      */
-    public function setLastname($lastname)
-    {
+    public function setLastname($lastname) {
         $this->lastname = $lastname;
 
         return $this;
@@ -181,8 +177,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getLastname()
-    {
+    public function getLastname() {
         return $this->lastname;
     }
 
@@ -192,8 +187,7 @@ class User extends BaseUser
      * @param string $firstname
      * @return User
      */
-    public function setFirstname($firstname)
-    {
+    public function setFirstname($firstname) {
         $this->firstname = $firstname;
 
         return $this;
@@ -204,8 +198,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getFirstname()
-    {
+    public function getFirstname() {
         return $this->firstname;
     }
 
@@ -215,8 +208,7 @@ class User extends BaseUser
      * @param string $establishment
      * @return User
      */
-    public function setEstablishment($establishment)
-    {
+    public function setEstablishment($establishment) {
         $this->establishment = $establishment;
 
         return $this;
@@ -227,8 +219,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getEstablishment()
-    {
+    public function getEstablishment() {
         return $this->establishment;
     }
 
@@ -238,8 +229,7 @@ class User extends BaseUser
      * @param string $class
      * @return User
      */
-    public function setClass($class)
-    {
+    public function setClass($class) {
         $this->class = $class;
 
         return $this;
@@ -250,8 +240,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getClass()
-    {
+    public function getClass() {
         return $this->class;
     }
 
@@ -261,8 +250,7 @@ class User extends BaseUser
      * @param float $latitude
      * @return User
      */
-    public function setLatitude($latitude)
-    {
+    public function setLatitude($latitude) {
         $this->latitude = $latitude;
 
         return $this;
@@ -273,8 +261,7 @@ class User extends BaseUser
      *
      * @return float 
      */
-    public function getLatitude()
-    {
+    public function getLatitude() {
         return $this->latitude;
     }
 
@@ -284,8 +271,7 @@ class User extends BaseUser
      * @param float $longitude
      * @return User
      */
-    public function setLongitude($longitude)
-    {
+    public function setLongitude($longitude) {
         $this->longitude = $longitude;
 
         return $this;
@@ -296,8 +282,7 @@ class User extends BaseUser
      *
      * @return float 
      */
-    public function getLongitude()
-    {
+    public function getLongitude() {
         return $this->longitude;
     }
 
@@ -307,8 +292,7 @@ class User extends BaseUser
      * @param string $description
      * @return User
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -319,8 +303,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -330,8 +313,7 @@ class User extends BaseUser
      * @param string $picture
      * @return User
      */
-    public function setPicture($picture)
-    {
+    public function setPicture($picture) {
         $this->picture = $picture;
 
         return $this;
@@ -342,8 +324,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getPicture()
-    {
+    public function getPicture() {
         return $this->picture;
     }
 
@@ -353,8 +334,7 @@ class User extends BaseUser
      * @param \ClimaClass\ApplicationBundle\Entity\Language $mainLanguage
      * @return User
      */
-    public function setMainLanguage(\ClimaClass\ApplicationBundle\Entity\Language $mainLanguage = null)
-    {
+    public function setMainLanguage(\ClimaClass\ApplicationBundle\Entity\Language $mainLanguage = null) {
         $this->main_language = $mainLanguage;
 
         return $this;
@@ -365,8 +345,7 @@ class User extends BaseUser
      *
      * @return \ClimaClass\ApplicationBundle\Entity\Language 
      */
-    public function getMainLanguage()
-    {
+    public function getMainLanguage() {
         return $this->main_language;
     }
 
@@ -376,8 +355,7 @@ class User extends BaseUser
      * @param \ClimaClass\ApplicationBundle\Entity\Language $languages
      * @return User
      */
-    public function addLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages)
-    {
+    public function addLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages) {
         $this->languages[] = $languages;
 
         return $this;
@@ -388,8 +366,7 @@ class User extends BaseUser
      *
      * @param \ClimaClass\ApplicationBundle\Entity\Language $languages
      */
-    public function removeLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages)
-    {
+    public function removeLanguage(\ClimaClass\ApplicationBundle\Entity\Language $languages) {
         $this->languages->removeElement($languages);
     }
 
@@ -398,8 +375,7 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getLanguages()
-    {
+    public function getLanguages() {
         return $this->languages;
     }
 
@@ -409,8 +385,7 @@ class User extends BaseUser
      * @param \ClimaClass\ApplicationBundle\Entity\Report $reports
      * @return User
      */
-    public function addReport(\ClimaClass\ApplicationBundle\Entity\Report $reports)
-    {
+    public function addReport(\ClimaClass\ApplicationBundle\Entity\Report $reports) {
         $this->reports[] = $reports;
 
         return $this;
@@ -421,8 +396,7 @@ class User extends BaseUser
      *
      * @param \ClimaClass\ApplicationBundle\Entity\Report $reports
      */
-    public function removeReport(\ClimaClass\ApplicationBundle\Entity\Report $reports)
-    {
+    public function removeReport(\ClimaClass\ApplicationBundle\Entity\Report $reports) {
         $this->reports->removeElement($reports);
     }
 
@@ -431,8 +405,7 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getReports()
-    {
+    public function getReports() {
         return $this->reports;
     }
 
@@ -442,8 +415,7 @@ class User extends BaseUser
      * @param string $address
      * @return User
      */
-    public function setAddress($address)
-    {
+    public function setAddress($address) {
         $this->address = $address;
 
         return $this;
@@ -454,8 +426,12 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getAddress()
-    {
+    public function getAddress() {
         return $this->address;
     }
+
+    public function getCompleteName() {
+        return $this->getLastname() . ' ' . $this->getFirstname() ;
+    }
+
 }
