@@ -1,0 +1,5 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+     <a href="{{ path('my_account',{'id':app.user.id}) }}" class="navbar-right btn btn-success navbar-btn" style="margin-right: 10px;"><span class="glyphicon glyphicon-user"></span>{{app.user.lastname}} {{app.user.firstname}}</a>
+    
+{% endblock %}
