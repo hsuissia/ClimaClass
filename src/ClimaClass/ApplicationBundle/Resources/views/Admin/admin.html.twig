@@ -3,7 +3,6 @@
 {% block title %}Administration{% endblock %}
 
 {% block content %}
-    <p> A mettre dans un modal ! </p>
     {{ render(controller('FOSUserBundle:Registration:register')) }}
     <hr>
     
@@ -29,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<nav id="pagination">
 	  <ul class="pagination">
 		<li>
@@ -50,7 +49,7 @@
 	  </ul>
 	</nav>
 	
-	<!-- MODAL -->
+	<!-- MODAL START-->
 	<div id="popup1" class="popup_block">
 		<div class="users form">
 		
@@ -86,7 +85,7 @@
 					<input type="text" class="form-control greyInput" placeholder="Etablishment">
 				</div>
 				<div class="col-xs-6">	
-					<input type="text" class="form-control greyInput" placeholder="Address">
+					<input type="text" class="form-control greyInput" placeholder="Address" >
 				</div>
 				<div class="col-xs-6">
 					<div class="form-group">
@@ -120,6 +119,11 @@
 				</div>
 			</div>
 			<div class="col-xs-12">
+				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+				<div class="row" id="gmap" style="height: 200px;">					
+				</div>
+			</div>
+			<div class="col-xs-12">
 				<div class="row">
 					<a href="#"><div class="buttong">Add user</div></a>
 				</div>
@@ -134,4 +138,72 @@
 {% block javascripts %}
 	{{parent()}}
 	<script src="{{asset('bundles/climaclassapplication/js/modal_box.js')}}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<script>
+
+		function gMapInitialize(){
+			//var addressInput = document.getElementById("adresse");
+			//var latitudeInput = document.getElementById("latitude");
+			//var longitudeInput = document.getElementById("longitude");
+			var searchInput = document.getElementById("pac-input");	
+			var mapCanvas = document.getElementById("gmap");
+			
+			var markers = [];
+			
+			var mapOptions = {
+				center: new google.maps.LatLng(48.858859, 2.3470599),
+				zoom: 13,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var searchBox = new google.maps.places.SearchBox(searchInput);
+			
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
+			
+			google.maps.event.addListener(searchBox, 'places_changed', function() {
+				var places = searchBox.getPlaces();
+
+				if (places.length == 0) {
+					return;
+				}
+				
+				for (var i = 0, marker; marker = markers[i]; i++) {
+					marker.setMap(null);
+					marker = null;
+				}
+
+				markers = [];
+				var lat;
+				var lng;
+				var address;
+				
+				for (var i = 0, place; place = places[i]; i++) {
+				
+					var marker = new google.maps.Marker({
+						map: map,
+						title: place.name,
+						position: place.geometry.location
+					});
+					
+					console.log(place);
+					console.log("Adresse: " + place.formatted_address);
+					console.log("Latitude: " + place.geometry.location.lat());
+					console.log("Longitude: " + place.geometry.location.lng());
+					
+					address = place.formatted_address;
+					lat = place.geometry.location.lat();
+					lng = place.geometry.location.lng();
+					markers.push(marker);
+				}
+				
+				map.panTo(new google.maps.LatLng(lat, lng))
+				map.setZoom(15);
+				
+				//addressInput.value = address;
+				//latitudeInput.value = lat;
+				//longitudeInput.value = lng;
+			});
+		}
+	</script>
 {% endblock %}
