@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>{% block title %}ClimaClasse{% endblock %}</title>
+		
+		{% block stylesheets %}
         <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/style.css')}}">
-        <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
-        <script src="{{asset('bundles/climaclassapplication/js/jquery-1.11.3.min.js')}}"></script>
-        <script src="{{asset('bundles/climaclassapplication/js/bootstrap.min.js')}}"></script>
+		{% endblock %}
 
         <!-- Vérifier si utile
                 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
@@ -83,5 +83,10 @@
             </div>
             <img src="{{asset('bundles/climaclassapplication/images/theme/UNESCO2.png')}}">
         </footer>
+		
+		{% block javascripts %}
+		<script src="{{asset('bundles/climaclassapplication/js/jquery-1.11.3.min.js')}}"></script>
+        <script src="{{asset('bundles/climaclassapplication/js/bootstrap.min.js')}}"></script>
+		{% endblock %}
     </body>
 </html>

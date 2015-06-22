@@ -8,6 +8,11 @@
 	{%endif%}
 {% endblock %}
 
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
+{% endblock %}
+
 {% block content %}
 
 	<div></div>
@@ -76,8 +81,13 @@
 	<p><div class="buttong col-xs-12"><a href="">Save</a></div></p>
 		
 	{{form_end(form)}}
-       
-    <script>
+    
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
+    <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script>
+	
+	<script>
         $(document).ready(function () {            
             $('#climaclass_applicationbundle_report_content').trumbowyg({
                 btnsDef: {
@@ -167,9 +177,7 @@
                 });
             }           
         });
-    </script>
-	
-	<script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
-    <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script> 
+    </script>    
+{% endblock %}
     
 {% endblock %}
