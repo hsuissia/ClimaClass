@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+   public function getAdmin()
+{
+    $qb = $this->_em->createQueryBuilder();
+    $qb->select('u')
+        ->from($this->_entityName, 'u')
+        ->where('u.roles LIKE "ROLE_ADMIN"');
+
+    return $qb->getQuery()->getResult();
+}
 }

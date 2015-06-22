@@ -21,7 +21,7 @@ class MessageController extends Controller {
         $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
         return array('conversations' => $conversations);
     }
-    
+
     /**
      * @Route("/conversation/list_conversation_admin", name="liste_conversation_admin")
      * @Template()
@@ -64,7 +64,7 @@ class MessageController extends Controller {
         $user_recipient = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id_recipient);
         $form = $this->createFormBuilder()
                 ->add('subject', 'text', array('required' => true))
-                ->add('body','textarea',array('required'=>true))
+                ->add('body', 'textarea', array('required' => true))
                 ->add('Send', 'submit');
         $form = $form->getForm();
 
@@ -83,6 +83,43 @@ class MessageController extends Controller {
             $em->persist($message);
             $em->flush();
             return $this->redirect($this->generateUrl('profile', array('id' => $id_recipient)));
+        }
+        return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/message/admin", name="message_admin")
+     * @Template()
+     */
+    public function messageAdminAction(Request $request) {
+        $conversation = new Conversation();
+        $message = new Message();
+        $form = $this->createFormBuilder()
+                ->add('admin', 'entity', array('required' => true, 'class' => 'ClimaClass\ApplicationBundle\Entity\User', 'property' => 'completeName',
+                    /*'query_builder' => function(UserRepository $er) {
+                        return $er->getAdmin();
+                    },*/))
+                ->add('subject', 'text', array('required' => true))
+                ->add('body', 'textarea', array('required' => true))
+                ->add('mail', 'email', array('required' => false))
+                ->add('Send', 'submit');
+        $form = $form->getForm();
+
+        $form->handleRequest($request);
+        $data = $form->getData();
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $conversation->setUserCreator($this->getUser());
+            $conversation->setUserRecipient($data['admin']);
+            $conversation->setSubject($data['subject']);
+            $em->persist($conversation);
+            $message->setConversation($conversation);
+            $message->setUser($this->getUser());
+            $message->setPostDate(new \DateTime(date('Y-m-d H:i:s')));
+            $message->setBody($data['body']);
+            $em->persist($message);
+            $em->flush();
+            return $this->redirect($this->generateUrl('index'));
         }
         return array('form' => $form->createView());
     }
