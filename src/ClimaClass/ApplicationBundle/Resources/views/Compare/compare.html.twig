@@ -1,0 +1,16 @@
+{%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% block content %}
+    {{form(form)}}
+    <p> Temperature class 1 <br />
+    {{tabtempclass1|join(', ')}}</p>
+     <p> Rainlevel class 1 <br />
+    {{tabrainlevelclass1|join(', ')}}</p>
+     <p> WindSpeed class 1 <br />
+    {{tabwindspeedclass1|join(', ')}}</p>
+     <p> Temperature class 2 <br />
+    {{tabtempclass2|join(', ')}}</p>
+     <p> Rainlevel class 2 <br />
+    {{tabrainlevelclass2|join(', ')}}</p>
+     <p> Windspeed class 2 <br />
+    {{tabwindspeedclass2|join(', ')}}</p>
+{% endblock %}
