@@ -1,8 +1,137 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+
+{% block title %}Administration{% endblock %}
+
 {% block content %}
     <p> A mettre dans un modal ! </p>
     {{ render(controller('FOSUserBundle:Registration:register')) }}
     <hr>
-    {{ render(controller('ClimaClassApplicationBundle:Message:listPrivateMessageAdmin')) }}
     
+	
+	
+	<div class="repport col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 green" style="margin-bottom: 10px;">
+				<h1><img src="{{asset('bundles/climaclassapplication/images/theme/User_shape_32.png')}}"> Administration</h1>
+			</div>
+
+			<div class="col-xs-12" style="margin-bottom: 15px;">
+				<a href="#" data-width="500" data-rel="popup1" class="poplight"><div class="buttong">Add a user</div></a>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="blue col-xs-12">
+					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> Conversations</h3>
+				</div>
+				<div class="col-xs-12 grey">
+				{{ render(controller('ClimaClassApplicationBundle:Message:listPrivateMessageAdmin')) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<nav id="pagination">
+	  <ul class="pagination">
+		<li>
+		  <a href="#" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span>
+		  </a>
+		</li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li>
+		  <a href="#" aria-label="Next">
+			<span aria-hidden="true">&raquo;</span>
+		  </a>
+		</li>
+	  </ul>
+	</nav>
+	
+	<!-- MODAL -->
+	<div id="popup1" class="popup_block">
+		<div class="users form">
+		
+			<fieldset>
+				<legend>
+				   Add a user - complet the form
+				</legend>
+
+			</fieldset>
+			<div class="blue col-xs-12">
+				<h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Informations</h3>
+			</div>
+			<div class="col-xs-12 grey">
+				<div class="col-xs-6">
+					<input type="text" class="form-control greyInput" placeholder="Email">
+				</div>
+				<div class="col-xs-6">	
+					<input type="text" class="form-control greyInput" placeholder="Username">
+				</div>
+				<div class="col-xs-6">
+					<input type="text" class="form-control greyInput" placeholder="Password">
+				</div>
+				<div class="col-xs-6">	
+					<input type="text" class="form-control greyInput" placeholder="Confirm password">
+				</div>
+				<div class="col-xs-6">
+					<input type="text" class="form-control greyInput" placeholder="Lastname">
+				</div>
+				<div class="col-xs-6">	
+					<input type="text" class="form-control greyInput" placeholder="Firstname">
+				</div>
+				<div class="col-xs-6">
+					<input type="text" class="form-control greyInput" placeholder="Etablishment">
+				</div>
+				<div class="col-xs-6">	
+					<input type="text" class="form-control greyInput" placeholder="Address">
+				</div>
+				<div class="col-xs-6">
+					<div class="form-group">
+						<label for="main_language">Main language:</label>	
+						<select class="form-control" id="main_language">
+							<option>Afar</option>
+							<option>Français</option>
+							<option>English</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="form-group">
+						<label for="language">Language:</label>	
+						<select class="form-control" id="language" multiple>
+							<option>Afar</option>
+							<option>Français</option>
+							<option>English</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div class="form-group">
+						<label for="teacher">Teacher:</label>	
+						<select class="form-control" id="teacher">
+							<option>Teacher</option>
+							<option>Teacher</option>
+							<option>Teacher</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="row">
+					<a href="#"><div class="buttong">Add user</div></a>
+				</div>
+			</div>
+		</div>
+			
+	</div>
+	<!-- MODAL END-->
+    
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+	<script src="{{asset('bundles/climaclassapplication/js/modal_box.js')}}"></script>
 {% endblock %}
