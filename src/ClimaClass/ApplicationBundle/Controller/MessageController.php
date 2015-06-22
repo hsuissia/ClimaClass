@@ -17,7 +17,16 @@ class MessageController extends Controller {
      * @Route("/conversation/list_conversation", name="liste_conversation")
      * @Template()
      */
-    public function listPrivateMessageAction(Request $request) {
+    public function listPrivateMessageAction() {
+        $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
+        return array('conversations' => $conversations);
+    }
+    
+    /**
+     * @Route("/conversation/list_conversation_admin", name="liste_conversation_admin")
+     * @Template()
+     */
+    public function listPrivateMessageAdminAction() {
         $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
         return array('conversations' => $conversations);
     }

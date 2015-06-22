@@ -1,0 +1,8 @@
+{% block content %}
+    {%for conversation in conversations%}
+        <p><a href="{{path('display_conversation',{'id':conversation.id})}}">{{conversation.subject}}</a></p>
+        <p>{{conversation.messages[0].postDate|date('Y-m-d H:i:s')}}</p>
+        <p>{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}</p>
+    {%endfor%}
+    
+{% endblock %}
