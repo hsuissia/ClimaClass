@@ -1,5 +1,17 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+
+{% block title %}
+	{%if app.request.attributes.get("_route") == "edit_report"%}
+		Edit report
+	{%else%}
+		New report
+	{%endif%}
+{% endblock %}
+
 {% block content %}
+
+	<div></div>
+
     {{form_start(form)}}
 	
 	<div class="repport col-xs-12">
