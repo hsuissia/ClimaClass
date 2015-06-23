@@ -26,7 +26,7 @@ security:
             anonymous: ~
 
     access_control:
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/manage_report/, role: ROLE_TEACHER }
         - { path: ^/conversation/, role: ROLE_TEACHER }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }    

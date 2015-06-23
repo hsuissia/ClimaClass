@@ -23,7 +23,7 @@ class MessageController extends Controller {
     }
 
     /**
-     * @Route("/conversation/list_conversation_admin", name="liste_conversation_admin")
+     * @Route("/admin/conversation/list_conversation_admin", name="liste_conversation_admin")
      * @Template()
      */
     public function listPrivateMessageAdminAction() {
