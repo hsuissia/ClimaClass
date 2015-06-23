@@ -28,9 +28,11 @@ class MessageController extends Controller {
      * @Route("/admin/conversation/list_conversation_admin", name="liste_conversation_admin")
      * @Template()
      */
-    public function listPrivateMessageAdminAction() {
+    public function listPrivateMessageAdminAction(Request $request) {
         $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findByAdmin(1);
-        return array('conversations' => $conversations);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($conversations, $request->query->getInt('page', 1), 20);
+        return array('pagination' => $pagination);
     }
 
     /**
