@@ -68,7 +68,6 @@ footer li
 	text-align: center;
 	font-size: 18px;
 	color: #8bc34a;
-	background-color: #FFF;
 }
 
 .buttong > a
@@ -79,16 +78,17 @@ footer li
 .buttong:hover
 {
 	padding: 3px;
-	border: 2px solid #8bc34a;
+	border: 2px solid #00a8ff;
 	border-radius: 5px;
 	text-align: center;
 	font-size: 18px;
 	transition : 0.1s;
+	color: #00a8ff;
 }
 
 .buttong:hover > a
 {
-	color: #8bc34a;
+	color: #00a8ff;
 	transition : 0.1s;
 }
 
@@ -274,6 +274,7 @@ footer li
 	margin: auto;
 	text-align: center;
 	border-right: 2px solid #00a8ff;
+	padding: 3px;
 }
 
 .nopadding {
@@ -284,6 +285,16 @@ footer li
 .comment textarea
 {
 	border: 1px solid #8bc34a!important;
+}
+
+.comment
+{
+	background-color: #e1e1e1;
+}
+
+.comment:last-child
+{
+	margin-bottom: 15px;
 }
 
 .blue
@@ -321,15 +332,37 @@ footer li
 	border-bottom: 1px dashed #00a8ff;
 }
 
+.conversation-back
+{
+	background-color: #fff;
+	padding-right: 7px!important;
+	padding-left: 7px!important;
+}
+
 #graph1, #graph2
 {
 	height: 350px;
 }
 
+.left
+{
+	text-align: right;
+	border-right: 0px!important;
+}
 
+.left .avatar
+{
+	text-align: right;
+	border-right: 0px;
+	border-left: 2px solid #00a8ff;
 
+}
 
-
+.conversation-area
+{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
 
 
 

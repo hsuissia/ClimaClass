@@ -1,17 +1,63 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    <p>{{conversation.subject}}</p>
-    <p>Contributors : <p>{%if conversation.userCreator is not null %}{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}{%else%} Anonymous {%endif%} and {%if conversation.userRecipient is not null%}{{conversation.userRecipient.lastname}} {{conversation.userRecipient.firstname}}{%else%} Admin {%endif%}</p>
+	<div class="repport col-xs-12">
+		<div class="row">
+			<div class="col-xs-12 green" style="margin-bottom: 10px;">
+				<h1><img src="{{asset('bundles/climaclassapplication/images/theme/Speech_bubble_with_text_lines_32.png')}}"> {{conversation.subject}}</h1>
+			</div>
 
-    
-        {%for message in pagination%}
-            <p>{%if message.user is not null%}{{message.user.lastname}} {{message.user.firstname}}{%else%} Anonymous {%endif%}<br />{{message.body}}<br />{{message.postDate|date('Y-m-d H:i:s')}}</p>
-        {%endfor%}
-    <div class="navigation">
+
+			<div class="col-xs-12">
+				<div class="blue col-xs-12">
+					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> {%if conversation.userCreator is not null %}{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}{%else%} Anonymous {%endif%} and {%if conversation.userRecipient is not null%}{{conversation.userRecipient.lastname}} {{conversation.userRecipient.firstname}}{%else%} Admin {%endif%}</h3>
+				</div>
+				<div class="col-xs-12 grey">
+					{%for message in pagination%}				
+					{%if message.user == app.user%}				
+					<div class="col-xs-12 comment conversation">
+						<div class="row">
+							<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+							<div class="col-xs-11 nopadding conversation-back">
+								<p>{{message.body}}</p>
+								<p>{{message.postDate|date('Y-m-d')}} - <strong>{%if message.user is not null%}{{message.user.lastname}} {{message.user.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
+							</div>
+						</div>
+					</div>
+					{%else%}
+					<div class="col-xs-12 comment conversation left">
+						<div class="row">
+							<div class="col-xs-11 nopadding conversation-back">
+								<p>{{message.body}}</p>
+								<p>{{message.postDate|date('Y-m-d')}} - <strong>{%if message.user is not null%}{{message.user.lastname}} {{message.user.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
+							</div>
+							<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+						</div>
+					</div>
+					{%endif%}
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{%if app.user is not null %}
+	{{form_start(form)}}
+	<div class="col-xs-12 conversation-area">
+		<div class="row">
+			{{form_widget(form.body, {'attr' :{'class': 'form-control', 'rows' : '3', 'placeholder' : 'Your message'}})}}
+		</div>
+	</div>
+	
+	<div class="col-xs-12" style="margin-bottom: 15px;">
+		<div class="row">
+			{{form_widget(form.Send, {'attr' :{'class': 'buttong'}})}}
+		</div>
+	</div>
+	{{form_end(form)}}
+    {%endif%}
+	
+	<div class="navigation">
         {{ knp_pagination_render(pagination) }}
     </div>
-    {%if app.user is not null %}
-        {{form(form)}}
-    {%endif%}
 
 {% endblock %}
