@@ -20,7 +20,7 @@ class MessageController extends Controller {
     public function listPrivateMessageAction(Request $request) {
         $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
         $paginator = $this->get('knp_paginator');
-        $pagination = $paginator->paginate($conversations, $request->query->getInt('page', 1), 2);
+        $pagination = $paginator->paginate($conversations, $request->query->getInt('page', 1), 20);
         return array('pagination' => $pagination);
     }
 
@@ -39,6 +39,9 @@ class MessageController extends Controller {
      */
     public function displayConversationAction(Request $request, $id) {
         $conversation = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->find($id);
+        $messages = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Message")->findByConversation($conversation);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($messages, $request->query->getInt('page', 1), 20);
         $message = new Message();
         $form = $this->createForm(new MessageType(), $message);
         $form->add('Send', 'submit');
@@ -53,7 +56,7 @@ class MessageController extends Controller {
             $em->flush();
             return $this->redirect($this->generateUrl('display_conversation', array('id' => $id)));
         }
-        return array('conversation' => $conversation, 'form' => $form->createView());
+        return array('conversation' => $conversation, 'form' => $form->createView(),'pagination'=>$pagination);
     }
 
     /**

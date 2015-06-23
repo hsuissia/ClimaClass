@@ -15,13 +15,13 @@ class ProfilController extends Controller
      * @Route("/profile/{id}", name="profile")
      * @Template()
      */
-    public function viewProfileAction($id)
+    public function viewProfileAction($id,Request $request)
     {
        $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
        $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findByUser($class, array('postDate' => 'desc'));
        $paginator = $this->get('knp_paginator');
-       $pagination = $paginator->paginate($reports, $request->query->getInt('page', 1), 10);
-       return array('class' => $class,'id'=>$id);
+       $pagination = $paginator->paginate($reports, $request->query->getInt('page', 1), 3);
+       return array('class' => $class,'id'=>$id,'pagination'=>$pagination);
        
     }
     
