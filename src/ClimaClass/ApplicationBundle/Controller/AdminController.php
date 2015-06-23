@@ -11,13 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminController extends Controller {
 
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/admin/", name="admin")
      * @Template()
      */
     public function adminAction() {
-        $token = $this->get('security.context')->getToken();
-        
-        return array('token'=>$token);
+       return array();
     }
 
 }
