@@ -3,68 +3,68 @@
 {% block title %}My account{% endblock %}
 
 {% block content %}
-	
-	{{form_start(form)}}
-	<div class="repport col-xs-12">
-		<div class="row">
-			<div class="col-xs-12 green" style="margin-bottom: 10px;">
-				<h1><img src="{{asset('bundles/climaclassapplication/images/theme/User_shape_32.png')}}"> My parameters</h1>
-			</div>
-			<div class="col-md-4">
-				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Password</h3>
-				</div>
-				<div class="col-xs-12 grey">
-					{{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'New password'}})}}
-					{{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm your password'}})}}
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/Message_Closed_Envelope_32.png')}}"> Your email</h3>
-				</div>
-				<div class="col-xs-12 grey">
-					{{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'}})}}
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/Book_cover_32.png')}}"> School info</h3>
-				</div>
-				<div class="col-xs-12 grey">
-					{{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'}})}}
-					{{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'}})}}
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> You</h3>
-				</div>
-				<div class="col-xs-12 grey">
-					<div class="col-md-6">
-						{{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'}})}}
-					</div>
-					<div class="col-md-6">
-						{{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'}})}}
-					</div>
-					<div class="col-md-6" style="margin-bottom: 10px;">
-						{{form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder' : 'Description', 'rows' : '3'}})}}
-					</div>
-					<div class="col-md-6">
-						{{form_widget(form.file, {'attr': {'class': 'file'}})}}
-					</div>
-					<div class="clearfix"></div>
-					<div class="col-md-6">
-						{{form_widget(form.main_language, {'attr': {'class': 'form-control'}})}}
-					</div>
-					<div class="col-md-6">
-						{{form_widget(form.languages, {'attr': {'class': 'form-control', 'style' : 'margin-bottom: 10px; height:150px'}})}}
-					</div>
-				</div>
-				<p>{{form_widget(form.Submit, {'attr': {'class': 'buttong col-xs-12', 'style' : 'margin-bottom: 10px;'}})}}</p>
-			</div>
-		</div>
-	</div>
-	{{form_end(form)}}
-	
+
+    {{form_start(form)}}
+    <div class="repport col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 green" style="margin-bottom: 10px;">
+                <h1><img src="{{asset('bundles/climaclassapplication/images/theme/User_shape_32.png')}}"> My parameters</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Password</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'New password'}})}}
+                    {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm your password'}})}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Message_Closed_Envelope_32.png')}}"> Your email</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'}})}}
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Book_cover_32.png')}}"> School info</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'}})}}
+                    {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'}})}}
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> You</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    <div class="col-md-6">
+                        {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'}})}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'}})}}
+                    </div>
+                    <div class="col-md-6" style="margin-bottom: 10px;">
+                        {{form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder' : 'Description', 'rows' : '3'}})}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form_widget(form.file, {'attr': {'class': 'file'}})}}
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6">
+                        {{form_widget(form.main_language, {'attr': {'class': 'form-control'}})}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form_widget(form.languages, {'attr': {'class': 'form-control', 'style' : 'margin-bottom: 10px; height:150px'}})}}
+                    </div>
+                </div>
+                <p>{{form_widget(form.Submit, {'attr': {'class': 'buttong col-xs-12', 'style' : 'margin-bottom: 10px;'}})}}</p>
+            </div>
+        </div>
+    </div>
+    {{form_end(form)}}
+
 {% endblock %}

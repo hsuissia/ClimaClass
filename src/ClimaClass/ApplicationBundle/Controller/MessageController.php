@@ -17,9 +17,11 @@ class MessageController extends Controller {
      * @Route("/conversation/list_conversation", name="liste_conversation")
      * @Template()
      */
-    public function listPrivateMessageAction() {
+    public function listPrivateMessageAction(Request $request) {
         $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
-        return array('conversations' => $conversations);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($conversations, $request->query->getInt('page', 1), 2);
+        return array('pagination' => $pagination);
     }
 
     /**

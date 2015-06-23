@@ -18,6 +18,9 @@ class ProfilController extends Controller
     public function viewProfileAction($id)
     {
        $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
+       $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findByUser($class, array('postDate' => 'desc'));
+       $paginator = $this->get('knp_paginator');
+       $pagination = $paginator->paginate($reports, $request->query->getInt('page', 1), 10);
        return array('class' => $class,'id'=>$id);
        
     }
