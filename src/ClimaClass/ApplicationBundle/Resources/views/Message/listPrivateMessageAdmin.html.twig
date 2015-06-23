@@ -1,5 +1,5 @@
 {% block content %}
-    {%for conversation in conversations%}
+    {%for conversation in pagination%}
 		<div class="col-xs-12 comment conversation">
 			<div class="row">
 				<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
@@ -10,5 +10,8 @@
 			</div>
 		</div>
     {%endfor%}
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
     
 {% endblock %}

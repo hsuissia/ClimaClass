@@ -9,8 +9,8 @@
                 <div class="col-xs-9"><h1><img src="{{asset('bundles/climaclassapplication/images/theme/School_32.png')}}"> Profile {{class.class}}</h1></div>
                 <div class="col-xs-3">
                     {%if app.user is not null%}{%if app.user.id != id %}				
-                            <p><img src="{{asset('bundles/climaclassapplication/images/theme/Message_Closed_Envelope_32.png')}}"> <a href="{{path('new_conversation',{'id_recipient':class.id})}}">Send private message</a></p>
-                        {%endif%}{%endif%}
+                        <p><img src="{{asset('bundles/climaclassapplication/images/theme/Message_Closed_Envelope_32.png')}}"> <a class="send" href="{{path('new_conversation',{'id_recipient':class.id})}}">Send a message</a></p>
+                    {%endif%}{%endif%}
                 </div>
             </div>
             <div class="col-xs-12">
@@ -20,28 +20,33 @@
                             <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> School info</h3>
                         </div>
                         <div class="col-xs-12 grey">
-                            <div class="col-xs-6">
-                                <input type="text" class="form-control greyInput" value="{{class.lastname}}" disabled style="cursor: default;">
-                            </div>
-                            <div class="col-xs-6">	
-                                <input type="text" class="form-control greyInput" value="{{class.firstname}}" disabled style="cursor: default;">
-                            </div>
-                            <div class="col-md-6" style="margin-bottom: 10px;">
-                                <textarea class="form-control" rows="3" disabled style="cursor: default;">{{class.description}}</textarea>
-                            </div>
-                            <div class="col-xs-6">	
-                                <select class="form-control" multiple disabled style="cursor: default; margin-bottom: 10px;">
-                                    <option style="color: #00a8ff">{{class.mainLanguage.language}}</option>
-                                    {%for language in class.languages%}
-                                        {% if language.language != class.mainLanguage.language%}
-                                            <option>{{language.language}}</option>
-                                        {%endif%}
-                                    {%endfor%}
-                                </select>
-                            </div>
+							<div class="col-xs-2" style="margin-top: 10px;">
+								<img src="{{asset('bundles/climaclassapplication/images/theme/Image_Archive_80.png')}}">
+							</div>
+							<div class="col-xs-10">
+								<div class="col-xs-6">	
+									<select class="form-control greyInput" multiple disabled style="cursor: default; margin-bottom: 10px;">
+										<option style="color: #00a8ff">{{class.mainLanguage.language}}</option>
+										{%for language in class.languages%}
+											{% if language.language != class.mainLanguage.language%}
+												<option>{{language.language}}</option>
+											{%endif%}
+										{%endfor%}
+									</select>
+								</div>
+								<div class="col-xs-6">
+									<input type="text" class="form-control greyInput" value="{{class.lastname}}" disabled style="cursor: default;">
+								</div>
+								<div class="col-xs-6">	
+									<input type="text" class="form-control greyInput" value="{{class.firstname}}" disabled style="cursor: default;">
+								</div>
+							</div>
+							<div class="col-md-12" style="margin-bottom: 10px; margin-top: 10px;">
+								<textarea class="form-control" rows="3" disabled style="cursor: default;">{{class.description}}</textarea>
+							</div>
                         </div>
                     </div>
-                    <div class="col-md-6"><div class="col-xs-12" id="gmap" style="height: 200px"></div></div>
+                    <div class="col-md-6"><div class="col-xs-12" id="gmap" style="height: 250px"></div></div>
                 </div>
             </div>
 
