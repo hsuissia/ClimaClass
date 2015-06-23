@@ -18,9 +18,10 @@ class ReportRepository extends EntityRepository
         return $this->getEntityManager()
         ->createQuery("SELECT r
                     FROM ClimaClassApplicationBundle:Report r
-                    WHERE r.postDate BETWEEN :nowmonthprev AND :now")
+                    WHERE r.postDate BETWEEN :nowmonthprev AND :now
+                    ORDER BY r.postDate DESC")
         ->setParameter("now", $date)
-        ->setParameter("nowmonthprev", $date_month_prev)
+        ->setParameter("nowmonthprev", $date_month_prev)  
         ->getResult();
     }
 }

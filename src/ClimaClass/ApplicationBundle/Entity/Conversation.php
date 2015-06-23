@@ -28,6 +28,20 @@ class Conversation
      * @ORM\Column(name="subject", type="string", length=255)
      */
     private $subject;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail", type="string", length=255,nullable=true)
+     */
+    private $mail;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="admin", type="boolean")
+     */
+    private $admin;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -160,5 +174,51 @@ class Conversation
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Set mail
+     *
+     * @param string $mail
+     * @return Conversation
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * Get mail
+     *
+     * @return string 
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param boolean $admin
+     * @return Conversation
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return boolean 
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
     }
 }

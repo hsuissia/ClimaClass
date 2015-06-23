@@ -27,7 +27,7 @@ class MessageController extends Controller {
      * @Template()
      */
     public function listPrivateMessageAdminAction() {
-        $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findMyConversation($this->getUser());
+        $conversations = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Conversation")->findByAdmin(1);
         return array('conversations' => $conversations);
     }
 
@@ -75,6 +75,7 @@ class MessageController extends Controller {
             $conversation->setUserCreator($this->getUser());
             $conversation->setUserRecipient($user_recipient);
             $conversation->setSubject($data['subject']);
+            $conversation->setAdmin(0);
             $em->persist($conversation);
             $message->setConversation($conversation);
             $message->setUser($this->getUser());
@@ -95,10 +96,6 @@ class MessageController extends Controller {
         $conversation = new Conversation();
         $message = new Message();
         $form = $this->createFormBuilder()
-                ->add('admin', 'entity', array('required' => true, 'class' => 'ClimaClass\ApplicationBundle\Entity\User', 'property' => 'completeName',
-                    /*'query_builder' => function(UserRepository $er) {
-                        return $er->getAdmin();
-                    },*/))
                 ->add('subject', 'text', array('required' => true))
                 ->add('body', 'textarea', array('required' => true))
                 ->add('mail', 'email', array('required' => false))
@@ -110,8 +107,9 @@ class MessageController extends Controller {
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $conversation->setUserCreator($this->getUser());
-            $conversation->setUserRecipient($data['admin']);
             $conversation->setSubject($data['subject']);
+            $conversation->setMail($data['mail']);
+            $conversation->setAdmin(1);
             $em->persist($conversation);
             $message->setConversation($conversation);
             $message->setUser($this->getUser());
