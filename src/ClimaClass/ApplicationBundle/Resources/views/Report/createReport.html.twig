@@ -1,96 +1,106 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
+{% import "ClimaClassApplicationBundle:Report:macro_measure.html.twig" as macro %}
 
 {% block title %}
-	{%if app.request.attributes.get("_route") == "edit_report"%}
-		Edit report
-	{%else%}
-		New report
-	{%endif%}
+    {%if app.request.attributes.get("_route") == "edit_report"%}
+        Edit report
+    {%else%}
+        New report
+    {%endif%}
 {% endblock %}
 
 {% block stylesheets %}
-	{{parent()}}
-	<link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
+    {{parent()}}
+    <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
 {% endblock %}
 
 {% block content %}
 
-	<div></div>
+    <div></div>
 
     {{form_start(form)}}
-	
-	<div class="repport col-xs-12">
-		<div class="row">
-			<div class="col-xs-12 green">
-				<div class="col-xs-1">
-					<img src="{{asset('bundles/climaclassapplication/images/theme/Pen_on_square_of_paper_interface_symbol_32.png')}}" width="32px" height="32px">
-				</div>
-				<div class="form-group has-success col-xs-11">
-					{{form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder' : 'Title'}})}}
-				</div>
-			</div>
-			
-		</div>
-		<div class="row">
-			{{form_widget(form.content,{'attr': {'class':'col-xs-12'}})}}
-		</div>
-	</div>
-	
-	
-	<div class="indicators_add col-xs-12" id="indicators_tag" style="margin-top: 10px;">
-	{{form_widget(form.measures)}}
-		<div class="indicators_back col-md-2">
-			<div class="has-success">
-				<label class="control-label" for="inputSuccess1">Rain</label>						  
-				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="has-success">
-				<label class="control-label" for="inputSuccess1">Temperature</label>						  
-				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="has-success">
-				<label class="control-label" for="inputSuccess1">Wind</label>						  
-				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="has-success">
-				<label class="control-label" for="inputSuccess1">Wind direction</label>						  
-				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-			</div>
-		</div>
-		<div class="col-md-2">
-			<div class="has-success">
-				<label class="control-label" for="inputSuccess1">Date</label>						  
-				<input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-			</div>
-		</div>
-		<div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>
-	</div>
-	<div class="col-xs-12" style="text-align:center; margin-top: 10px;"><img id="add" src="{{asset('bundles/climaclassapplication/images/theme/add.png')}}"></div>
-	<div class="col-xs-12">
-		<div class="has-success">
-			<label class="control-label" for="inputSuccess1">Video</label>						  
-			<input type="file" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-		</div>
-	</div>
-	<p><div class="buttong col-xs-12"><a href="">Save</a></div></p>
-		
-	{{form_end(form)}}
-    
-    
+
+    <div class="repport col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 green">
+                <div class="col-xs-1">
+                    <img src="{{asset('bundles/climaclassapplication/images/theme/Pen_on_square_of_paper_interface_symbol_32.png')}}" width="32px" height="32px">
+                </div>
+                <div class="form-group has-success col-xs-11">
+                    {{form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder' : 'Title'}})}}
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            {{form_widget(form.content,{'attr': {'class':'col-xs-12'}})}}
+        </div>
+    </div>
+
+
+    <div class="indicators_add col-xs-12" id="indicators_tag" style="margin-top: 10px;">
+        {#<div class="measures" data-prototype="{{ macro.prototype(form.measures.vars.prototype|e) }}">
+           {% for measure in form.measures %}
+                {{ macro.prototype(measure) }}
+            {% endfor %}
+            <button class="add-collection">Add measures</button>
+        </div>   MACCRO !#}
+        
+        {{form_widget(form.measures)}}
+
+
+        <div class="indicators_back col-md-2">
+            <div class="has-success">
+                <label class="control-label" for="inputSuccess1">Rain</label>						  
+                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="has-success">
+                <label class="control-label" for="inputSuccess1">Temperature</label>						  
+                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="has-success">
+                <label class="control-label" for="inputSuccess1">Wind</label>						  
+                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="has-success">
+                <label class="control-label" for="inputSuccess1">Wind direction</label>						  
+                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="has-success">
+                <label class="control-label" for="inputSuccess1">Date</label>						  
+                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+            </div>
+        </div>
+        <div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>
+    </div>
+    <div class="col-xs-12" style="text-align:center; margin-top: 10px;"><img id="add" src="{{asset('bundles/climaclassapplication/images/theme/add.png')}}"></div>
+    <div class="col-xs-12">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Video</label>						  
+            <input type="file" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
+        </div>
+    </div>
+    <p><div class="buttong col-xs-12"><a href="">Save</a></div></p>
+
+{{form_end(form)}}
+
+
 {% endblock %}
 {% block javascripts %}
-	{{parent()}}
-	<script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
+    {{parent()}}
+    <script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
     <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script>
-	
-	<script>
-        $(document).ready(function () {            
+
+    <script>
+        $(document).ready(function () {
             $('#climaclass_applicationbundle_report_content').trumbowyg({
                 btnsDef: {
                     image: {
@@ -118,7 +128,7 @@
                 return false;
             });
 
-            var indexMeasure = $containerMeasure.find(':input').length;            
+            var indexMeasure = $containerMeasure.find(':input').length;
             if (indexMeasure == 0) {
                 $containerMeasure.children('div').each(function () {
                     addDeleteLinkMeasure($(this));
@@ -144,9 +154,9 @@
                     return false;
                 });
             }
-            
+
             /****************************************************************************************/
-            
+
             var $containerVideo = $('div#climaclass_applicationbundle_report_videos');
             var $addLinkVideo = $('<a href="#" id="add_video" class="btn btn-default">Add new video</a>');
             $containerVideo.append($addLinkVideo);
@@ -155,7 +165,7 @@
                 e.preventDefault();
                 return false;
             });
-            var indexVideo = $containerVideo.find(':input').length;            
+            var indexVideo = $containerVideo.find(':input').length;
             if (indexVideo != 0) {
                 $containerVideo.children('div').each(function () {
                     addDeleteLinkVideo($(this));
@@ -177,7 +187,7 @@
                     e.preventDefault();
                     return false;
                 });
-            }           
+            }
         });
     </script>    
 {% endblock %}

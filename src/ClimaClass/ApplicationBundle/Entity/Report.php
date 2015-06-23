@@ -210,8 +210,8 @@ class Report
      */
     public function addMeasure(\ClimaClass\ApplicationBundle\Entity\Measure $measures)
     {
-        $this->measures[] = $measures;
-
+        $this->measures->add($measures);
+        $measures->setReport($this);
         return $this;
     }
 
@@ -223,6 +223,7 @@ class Report
     public function removeMeasure(\ClimaClass\ApplicationBundle\Entity\Measure $measures)
     {
         $this->measures->removeElement($measures);
+        $measures->setReport(null);
     }
 
     /**

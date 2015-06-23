@@ -1,0 +1,21 @@
+{% block my_widget %}
+
+
+
+
+{% endblock %}
+
+{%- block collection_widget -%}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': block('my_widget') }) -%}
+    {% endif %}
+    {%- block form_widget_compound -%}
+        <div {{ block('widget_container_attributes') }}>
+            {%- if form.parent is empty -%}
+            {{ form_errors(form) }}
+            {%- endif -%}
+            {{- block('form_rows') -}}
+            {{- form_rest(form) -}}
+        </div>
+    {%- endblock form_widget_compound -%}
+{%- endblock collection_widget -%}

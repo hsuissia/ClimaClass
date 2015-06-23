@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use ClimaClass\ApplicationBundle\Entity\Report;
 use ClimaClass\ApplicationBundle\Form\CommentType;
 use ClimaClass\ApplicationBundle\Entity\Comment;
+use ClimaClass\ApplicationBundle\Entity\Measure;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class ReportController extends Controller
@@ -62,9 +63,7 @@ class ReportController extends Controller
            foreach($report->getMeasures() as $measure){
                $measure->setReport($report);
            }
-           
            foreach($report->getVideos() as $video){
-
                $video->upload();
                $video->setReport($report);
            }

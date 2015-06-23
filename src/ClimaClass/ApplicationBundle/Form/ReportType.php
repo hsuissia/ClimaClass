@@ -19,7 +19,8 @@ class ReportType extends AbstractType {
                 ->add('measures', 'collection', array(
                     'type' => new MeasureType(),
                     'allow_add' => true,
-                    'allow_delete' => true
+                    'allow_delete' => true,
+                    'by_reference' => false
                 ))
                 ->add('videos', 'collection', array(
                     'type' => new VideoType(),

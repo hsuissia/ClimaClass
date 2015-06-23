@@ -1,0 +1,33 @@
+{% macro prototype(measure) %}
+    <div class="indicators_back col-md-2">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Rain</label>						  
+            <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !" value=" {{ measure.vars.value.rainLevel }} ">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Temperature</label>						  
+            <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !" value=" {{ measure.vars.value.temperature }} ">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Wind</label>						  
+            <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !" value=" {{ measure.vars.value.windSpeed }} ">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Wind direction</label>						  
+            <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !" value=" {{ measure.vars.value.windDirection }} ">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="has-success">
+            <label class="control-label" for="inputSuccess1">Date</label>						  
+            <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !" value=" {{ measure.vars.value.measurementDate }} ">
+        </div>
+    </div>
+    <div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>
+{% endmacro %}
