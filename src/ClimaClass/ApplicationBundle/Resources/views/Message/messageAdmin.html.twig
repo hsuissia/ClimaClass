@@ -25,13 +25,3 @@
 
 
 {% endblock %}
-{% block javascripts %}
-    {{parent()}}
-    <script>
-        $(document).ready(function () {
-        {%if app.user is null%}
-                $('#form_mail').prop('required', true);
-        {%endif%}
-            });
-    </script>
-{% endblock %}

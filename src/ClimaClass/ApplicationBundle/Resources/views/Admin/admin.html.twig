@@ -3,10 +3,7 @@
 {% block title %}Administration{% endblock %}
 
 {% block content %}
-    {{ render(controller('FOSUserBundle:Registration:register')) }}
-    <hr>
     
-	
 	
 	<div class="repport col-xs-12">
 		<div class="row">
@@ -29,6 +26,8 @@
 		</div>
 	</div>
 	
+	{{ render(controller('FOSUserBundle:Registration:register')) }}
+	
 	<nav id="pagination">
 	  <ul class="pagination">
 		<li>
@@ -48,90 +47,6 @@
 		</li>
 	  </ul>
 	</nav>
-	
-	<!-- MODAL START-->
-	<div id="popup1" class="popup_block">
-		<div class="users form">
-		
-			<fieldset>
-				<legend>
-				   Add a user - complet the form
-				</legend>
-
-			</fieldset>
-			<div class="blue col-xs-12">
-				<h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Informations</h3>
-			</div>
-			<div class="col-xs-12 grey">
-				<div class="col-xs-6">
-					<input type="text" class="form-control greyInput" placeholder="Email">
-				</div>
-				<div class="col-xs-6">	
-					<input type="text" class="form-control greyInput" placeholder="Username">
-				</div>
-				<div class="col-xs-6">
-					<input type="text" class="form-control greyInput" placeholder="Password">
-				</div>
-				<div class="col-xs-6">	
-					<input type="text" class="form-control greyInput" placeholder="Confirm password">
-				</div>
-				<div class="col-xs-6">
-					<input type="text" class="form-control greyInput" placeholder="Lastname">
-				</div>
-				<div class="col-xs-6">	
-					<input type="text" class="form-control greyInput" placeholder="Firstname">
-				</div>
-				<div class="col-xs-6">
-					<input type="text" class="form-control greyInput" placeholder="Etablishment">
-				</div>
-				<div class="col-xs-6">	
-					<input type="text" class="form-control greyInput" placeholder="Address" >
-				</div>
-				<div class="col-xs-6">
-					<div class="form-group">
-						<label for="main_language">Main language:</label>	
-						<select class="form-control" id="main_language">
-							<option>Afar</option>
-							<option>Français</option>
-							<option>English</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="form-group">
-						<label for="language">Language:</label>	
-						<select class="form-control" id="language" multiple>
-							<option>Afar</option>
-							<option>Français</option>
-							<option>English</option>
-						</select>
-					</div>
-				</div>
-				<div class="col-xs-6">
-					<div class="form-group">
-						<label for="teacher">Teacher:</label>	
-						<select class="form-control" id="teacher">
-							<option>Teacher</option>
-							<option>Teacher</option>
-							<option>Teacher</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-				<div class="row" id="gmap" style="height: 200px;">					
-				</div>
-			</div>
-			<div class="col-xs-12">
-				<div class="row">
-					<a href="#"><div class="buttong">Add user</div></a>
-				</div>
-			</div>
-		</div>
-			
-	</div>
-	<!-- MODAL END-->
     
 {% endblock %}
 
@@ -142,9 +57,9 @@
 	<script>
 
 		function gMapInitialize(){
-			//var addressInput = document.getElementById("adresse");
-			//var latitudeInput = document.getElementById("latitude");
-			//var longitudeInput = document.getElementById("longitude");
+			var addressInput = document.getElementById("fos_user_registration_form_address");
+			var latitudeInput = document.getElementById("fos_user_registration_form_latitude");
+			var longitudeInput = document.getElementById("fos_user_registration_form_longitude");
 			var searchInput = document.getElementById("pac-input");	
 			var mapCanvas = document.getElementById("gmap");
 			
@@ -200,9 +115,9 @@
 				map.panTo(new google.maps.LatLng(lat, lng))
 				map.setZoom(15);
 				
-				//addressInput.value = address;
-				//latitudeInput.value = lat;
-				//longitudeInput.value = lng;
+				addressInput.value = address;
+				latitudeInput.value = lat;
+				longitudeInput.value = lng;
 			});
 		}
 	</script>
