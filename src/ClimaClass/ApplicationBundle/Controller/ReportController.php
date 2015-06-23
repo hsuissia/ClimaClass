@@ -22,6 +22,9 @@ class ReportController extends Controller
     public function viewReportAction($id, Request $request)
     {
        $report = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->find($id);
+       $comments = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Comment")->findByReport($report);
+       $paginator = $this->get('knp_paginator');
+       $pagination = $paginator->paginate($comments, $request->query->getInt('page', 1), 10);
        $comment = new Comment();
        $form = $this->createForm(new CommentType(),$comment);
        $form->add('Send','submit');
@@ -36,7 +39,7 @@ class ReportController extends Controller
            $em->flush();
            return $this->redirect($this->generateUrl('report',array('id'=>$id)));
        }
-       return array('report' => $report,'form'=>$form->createView());
+       return array('report' => $report,'form'=>$form->createView(),'pagination'=>$pagination);
        
     }
     
