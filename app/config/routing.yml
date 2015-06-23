@@ -8,9 +8,10 @@ fos_user:
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
     prefix:   /fos
-fos_user_registration:
+
+admin:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix:   /admin/register
+    prefix:   /admin
     
 app:
     resource: "@AppBundle/Controller/"
