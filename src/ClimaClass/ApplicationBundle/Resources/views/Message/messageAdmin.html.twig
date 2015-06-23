@@ -1,26 +1,40 @@
 {%extends "ClimaClassApplicationBundle::layout.html.twig"%}
 {% block content %}
-    {{form_start(form)}}
+	<div class="repport col-xs-12">
+	{{form_start(form)}}
+		<div class="row">
+			<div class="col-xs-12 green">
+				<div class="col-xs-1">
+					<img src="{{asset('bundles/climaclassapplication/images/theme/Pen_on_square_of_paper_interface_symbol_32.png')}}" width="32px" height="32px">
+				</div>
+				<div class="form-group has-success col-xs-11">
+					<div class="row">
+						<div class="col-xs-8">
+							{{form_widget(form.subject, {"attr" : {"class" : "form-control", "placeholder" : "Subject"}})}}
+						</div>
+						<div class="col-xs-4">
+						{%if app.user is null%}
+							{{form_widget(form.mail, {"attr" : {"class" : "form-control", "placeholder" : "Subject"}})}}
+						{%endif%}
+						</div>
+					</div>						  
+				</div>
+			</div>
 
-    {{form_label(form.subject)}}
-    {{form_widget(form.subject)}}
-    {{form_errors(form.subject)}}
 
-    {{form_label(form.body)}}
-    {{form_widget(form.body)}}
-    {{form_errors(form.body)}}
-
-    {%if app.user is null%}
-        {{form_label(form.mail)}}
-        {{form_widget(form.mail)}}
-        {{form_errors(form.mail)}}
-    {%endif%}
-    {{form_widget(form.Send)}}
-
-    {{ form_widget(form._token) }}
-    {{form_end(form, {'render_rest': false}) }}
-
-
+			<div class="col-xs-12">
+				<div class="row">
+					{{form_widget(form.body, {"attr" : {"class" : "form-control", "rows" : "3", "placeholder" : "Message"}})}}
+				</div>
+			</div>
+			<div class="col-xs-12" style="margin-bottom: 15px;">
+				<div class="row">
+					{{form_widget(form.Send, {"attr" : {"class" : "buttong"}})}}
+				</div>
+			</div>
+		</div>
+		{{form_end(form, {'render_rest': false}) }}
+	</div>
 {% endblock %}
 {% block javascripts %}
     {{parent()}}
