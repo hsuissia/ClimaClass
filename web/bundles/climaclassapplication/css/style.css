@@ -5,7 +5,7 @@ body
 
 a:link
 {
-	text-decoration: none;
+	text-decoration: none!important;
 }
 .container[role=main]
 {
@@ -364,11 +364,30 @@ footer li
 	margin-bottom: 15px;
 }
 
+.send
+{
+	font-size: 25px!important;
+	color: #fff;
+	text-decoration: none;
+	line-height: 200%;
+}
 
+.send:hover
+{
+	color: #00a8ff;
+	transition: 0.1s;
+}
 
+footer a
+{
+	text-decoration: none;
+	color: #fff;
+}
 
-
-
+footer a:hover
+{
+	color: #00a8ff;
+}
 
 
 
