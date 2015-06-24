@@ -114,13 +114,17 @@
                     var mapCanvas = document.getElementById("gmap");
                             var markers = [];
                             var mapOptions = {
-                            center: new google.maps.LatLng({{class.latitude}}, {{class.longitude}}),
-                                    zoom: 13,
-                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+								center: new google.maps.LatLng({{class.latitude}}, {{class.longitude}}),
+                                zoom: 14,
+								streetViewControl: false,
+								panControl: false,
+								mapTypeControl: false,
+								overviewMapControl: false,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
                             };
                             var map = new google.maps.Map(mapCanvas, mapOptions);
                             var marker = new google.maps.Marker({
-                            map: map,
+									map: map,
                                     title: "{{class.class}}",
                                     position: new google.maps.LatLng({{class.latitude}}, {{class.longitude}})
                             });

@@ -105,11 +105,8 @@
                     <div class="row" id="gmap" style="height: 200px;">					
                     </div>
                 </div>
-                <div class="col-xs-12">
-                    <div class="row">
-                        {{form_widget(form.Add, {'attr': {'class': 'buttong col-xs-12'} })}}
-                    </div>
-                </div>
+                
+                {{form_widget(form.Add, {'attr': {'class': 'buttong save col-xs-12'} })}}
             </div>
         {{form_end(form)}}	
     </div>
@@ -134,7 +131,11 @@
 
             var mapOptions = {
                 center: new google.maps.LatLng(48.858859, 2.3470599),
-                zoom: 13,
+                zoom: 14,
+				streetViewControl: false,
+				panControl: false,
+				mapTypeControl: false,
+				overviewMapControl: false,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
@@ -180,7 +181,7 @@
                 }
 
                 map.panTo(new google.maps.LatLng(lat, lng))
-                map.setZoom(15);
+                map.setZoom(14);
 
                 addressInput.value = address;
                 latitudeInput.value = lat;
