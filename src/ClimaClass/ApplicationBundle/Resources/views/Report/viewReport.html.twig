@@ -7,7 +7,7 @@
     <div class="repport col-xs-12">
         <div class="row">
             <div class="col-xs-12 green">
-                <h1><img src="{{asset('bundles/climaclassapplication/images/theme/Increasing_stocks_graphic_of_bars_32.png')}}"> {{report.title}} {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}">Edit report</a>{%endif%}{%endif%}</h1>
+                <h1><img src="{{asset('bundles/climaclassapplication/images/theme/Increasing_stocks_graphic_of_bars_32.png')}}"> {{report.title}} <span class="list-message">written by <a href="{{path('profile',{'id': report.user.id})}}">{{report.user.lastname}} {{report.user.firstname}}</a> {%if app.user is not null%}{%if report.user.id == app.user.id%}<a href="{{path('edit_report',{'id': report.id })}}" class="pull-right"><i class="glyphicon glyphicon-edit"></i> Edit</a>{%endif%}{%endif%}</span></h1>
             </div>
             <div class="col-xs-12">
                 {{report.content|raw }}
@@ -17,7 +17,6 @@
 
     {%if report.measures|length > 0 %}	
         <div class="indicators_view col-xs-12">
-            <h2>Measures</h2>
             {%for measure in report.measures%}	
                 <div class="col-xs-2 col-xs-offset-1">
                     {%if loop.index0 == 0%}

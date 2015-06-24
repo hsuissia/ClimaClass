@@ -318,7 +318,7 @@ footer li
 
 .grey p 
 {
-	color: 
+
 }
 
 .greyInput
@@ -389,7 +389,23 @@ footer a:hover
 	color: #00a8ff;
 }
 
+.sbutton
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: #fff;
+}
 
+.sbutton:hover
+{
+	padding: 3px;
+	border: 2px solid #00a8ff;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+	transition : 0.1s;
+	color: #00a8ff;
+}
 
 
 
@@ -488,4 +504,7 @@ position: absolute;
 }
 *html .popup_block {
 position: absolute;
+}
+.list-message{
+    font-size:25px;
 }

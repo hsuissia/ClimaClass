@@ -9,7 +9,7 @@
 
 			<div class="col-xs-12">
 				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> {%if conversation.userCreator is not null %}{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}{%else%} Anonymous {%endif%} and {%if conversation.userRecipient is not null%}{{conversation.userRecipient.lastname}} {{conversation.userRecipient.firstname}}{%else%} Admin {%endif%}</h3>
+					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> {%if conversation.userCreator is not null %}<a href="{{path('profile',{'id':conversation.userCreator.id})}}">{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}</a>{%else%} Anonymous {%endif%} and {%if conversation.userRecipient is not null%}<a href="{{path('profile',{'id':conversation.userRecipient.id})}}">{{conversation.userRecipient.lastname}} {{conversation.userRecipient.firstname}}</a>{%else%} Admin {%endif%}</h3>
 				</div>
 				<div class="col-xs-12 grey">
 					{%for message in pagination%}				
