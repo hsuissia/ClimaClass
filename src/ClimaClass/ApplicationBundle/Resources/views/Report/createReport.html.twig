@@ -39,16 +39,16 @@
 
 
     <div class="indicators_add col-xs-12" id="indicators_tag" style="margin-top: 10px;">
-        {#<div class="measures" data-prototype="{{ macro.prototype(form.measures.vars.prototype|e) }}">
+        <div class="measures" data-prototype="{{ macro.prototype(form.measures.vars.prototype|e) }}">
            {% for measure in form.measures %}
                 {{ macro.prototype(measure) }}
             {% endfor %}
             <button class="add-collection">Add measures</button>
-        </div>   MACCRO !#}
+        </div> 
         
-        {{form_widget(form.measures)}}
+        {#{{form_widget(form.measures)}}#}
 
-
+ {#
         <div class="indicators_back col-md-2">
             <div class="has-success">
                 <label class="control-label" for="inputSuccess1">Rain</label>						  
@@ -79,7 +79,7 @@
                 <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
             </div>
         </div>
-        <div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>
+        <div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>#}
     </div>
     <div class="col-xs-12" style="text-align:center; margin-top: 10px;"><img id="add" src="{{asset('bundles/climaclassapplication/images/theme/add.png')}}"></div>
     <div class="col-xs-12">
@@ -118,7 +118,7 @@
                     '|', 'horizontalRule']
             });
 
-            var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
+        {#var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
             var $addLinkMeasure = $('<a href="#" id="add_measure" class="btn btn-default">Add new measures</a>');
             $containerMeasure.append($addLinkMeasure);
 
@@ -153,7 +153,7 @@
                     e.preventDefault();
                     return false;
                 });
-            }
+            }#}
 
             /****************************************************************************************/
 

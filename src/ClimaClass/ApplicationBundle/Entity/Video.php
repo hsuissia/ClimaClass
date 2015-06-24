@@ -51,7 +51,6 @@ class Video {
         if (null === $this->file) {
             return;
         }
-
         // On récupère le nom original du fichier de l'internaute
         $name = $this->file->getClientOriginalName();
 
@@ -66,12 +65,12 @@ class Video {
 
     public function getUploadDir() {
         // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-        return 'bundles/climatclassapplication/videos';
+        return 'bundles/climaclassapplication/videos';
     }
 
     protected function getUploadRootDir() {
         // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
 
     /**

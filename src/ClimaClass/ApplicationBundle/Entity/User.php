@@ -137,12 +137,12 @@ class User extends BaseUser {
 
     public function getUploadDir() {
         // On retourne le chemin relatif vers l'image pour un navigateur (relatif au répertoire /web donc)
-        return 'bundles/climatclassapplication/images/users';
+        return 'bundles/climaclassapplication/images/users';
     }
 
     protected function getUploadRootDir() {
         // On retourne le chemin relatif vers l'image pour notre code PHP
-        return __DIR__ . '/../../../web/' . $this->getUploadDir();
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
     }
 
     public function __construct() {
