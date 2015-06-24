@@ -205,7 +205,14 @@
 						text: 'Rain Level'
 					},
 					xAxis: {
-						categories: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+						categories: [
+							{%for r in tabrain%}
+							'{{r.month}}'
+							{%if not loop.last%}
+							,
+							{%endif%}
+							{%endfor%}
+						],
 						crosshair: true
 					},
 					yAxis: {
@@ -232,7 +239,18 @@
 					},
 					series: [{
 						name: 'Rain Level',
-						data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+						data: [
+						{%for r in tabrain%}
+							{%if r.rainlevel is null %}
+								null
+							{%else%}
+								{{r.rainlevel}}
+							{%endif%}
+							{%if not loop.last%}
+							,
+							{%endif%}
+						{%endfor%}
+						]
 
 					}]
 				});
