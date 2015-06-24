@@ -101,6 +101,7 @@
 		{{dump(tabtemp)}}
 		{{dump(tabwind)}}
 		{{dump(tabrain)}}
+		{{dump(start_month)}}
     {% endblock %}
 	
 	
@@ -127,7 +128,9 @@
                             });
                     }
         </script>
-        <script type="text/javascript">			
+        <script type="text/javascript">	
+			{% set months = ['January','February','March','April','May','June','July','August','September','October','November','December'] %}
+			
             $(function () {
 				$('#temperatureGraph').css("height", "300px").highcharts({
 					title: {

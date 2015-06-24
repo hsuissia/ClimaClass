@@ -60,7 +60,6 @@ class ProfilController extends Controller {
             $tmptab['rainlevel'] = $val;
             $tabrainlevel[] = $tmptab;
         }
-        print_r($tabrainlevel);
         return array('class' => $class, 'id' => $id, 'pagination' => $pagination,'tabtemp'=>$tabtemp,'tabwind'=>$tabwind,'tabrain'=>$tabrainlevel,'start_month'=>$start_month);
     }
 

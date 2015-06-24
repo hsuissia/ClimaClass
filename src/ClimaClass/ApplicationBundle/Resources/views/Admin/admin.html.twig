@@ -3,101 +3,189 @@
 {% block title %}Administration{% endblock %}
 
 {% block content %}
-    
-	
-	<div class="repport col-xs-12">
-		<div class="row">
-			<div class="col-xs-12 green" style="margin-bottom: 10px;">
-				<h1><img src="{{asset('bundles/climaclassapplication/images/theme/User_shape_32.png')}}"> Administration</h1>
-			</div>
 
-			<div class="col-xs-12" style="margin-bottom: 15px;">
-				<a href="#" data-width="500" data-rel="popup1" class="poplight"><div class="buttong">Add a user</div></a>
-			</div>
 
-			<div class="col-xs-12">
-				<div class="blue col-xs-12">
-					<h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> Conversations</h3>
-				</div>
-				<div class="col-xs-12 grey">
-				{{ render(controller('ClimaClassApplicationBundle:Message:listPrivateMessageAdmin')) }}
-				</div>
-			</div>
-		</div>
-	</div>
-	{% render controller("FOSUserBundle:Registration:register") %}
-    
+    <div class="repport col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 green" style="margin-bottom: 10px;">
+                <h1><img src="{{asset('bundles/climaclassapplication/images/theme/User_shape_32.png')}}"> Administration</h1>
+            </div>
+
+            <div class="col-xs-12" style="margin-bottom: 15px;">
+                <a href="#" data-width="500" data-rel="popup1" class="poplight"><div class="buttong">Add a user</div></a>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/User_Avatar_Main_Picture_32.png')}}"> Conversations</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    {{ render(controller('ClimaClassApplicationBundle:Message:listPrivateMessageAdmin')) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL START-->
+    <div id="popup1" class="popup_block">
+       {{form_start(form)}}
+            <div class="users form">
+
+                <fieldset>
+                    <legend>
+                        Add a user
+                    </legend>
+
+                </fieldset>
+                <div class="blue col-xs-12">
+                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Informations</h3>
+                </div>
+                <div class="col-xs-12 grey">
+                    <div class="col-xs-6">
+                        {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'} })}}
+                        {{form_errors(form.email)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.username, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Username'} })}}
+                        {{form_errors(form.username)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Password'} })}}
+                        {{form_errors(form.plainPassword.first)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm Password'} })}}
+                        {{form_errors(form.plainPassword.second)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'} })}}
+                        {{form_errors(form.lastname)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'} })}}
+                        {{form_errors(form.firstname)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'} })}}
+                        {{form_errors(form.establishment)}}
+                    </div>
+                    <div class="col-xs-6">					
+                        {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'} })}}
+                        {{form_errors(form.class)}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{form_widget(form.address, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Address'} })}}
+                        {{form_errors(form.address)}}
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Main language:</label>	
+                            {{form_widget(form.main_language, {'attr': {'class': 'form-control'} })}}
+                            {{form_errors(form.main_language)}}
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Language:</label>	
+                            {{form_widget(form.languages, {'attr': {'class': 'form-control'} })}}
+                            {{form_errors(form.languages)}}
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label>Roles:</label>	
+                            {{form_widget(form.roles[0], {'attr': {'class': 'form-control'} })}}
+                            {{form_errors(form.roles[0])}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <div class="row" id="gmap" style="height: 200px;">					
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        {{form_widget(form.Add, {'attr': {'class': 'buttong col-xs-12'} })}}
+                    </div>
+                </div>
+            </div>
+        {{form_end(form)}}	
+    </div>
+    <!-- MODAL END-->
+
 {% endblock %}
 
 {% block javascripts %}
-	{{parent()}}
-	<script src="{{asset('bundles/climaclassapplication/js/modal_box.js')}}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-	<script>
+    {{parent()}}
+    <script src="{{asset('bundles/climaclassapplication/js/modal_box.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script>
 
-		function gMapInitialize(){
-			var addressInput = document.getElementById("fos_user_registration_form_address");
-			var latitudeInput = document.getElementById("fos_user_registration_form_latitude");
-			var longitudeInput = document.getElementById("fos_user_registration_form_longitude");
-			var searchInput = document.getElementById("pac-input");	
-			var mapCanvas = document.getElementById("gmap");
-			
-			var markers = [];
-			
-			var mapOptions = {
-				center: new google.maps.LatLng(48.858859, 2.3470599),
-				zoom: 13,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-			
-			var map = new google.maps.Map(mapCanvas, mapOptions);
-			var searchBox = new google.maps.places.SearchBox(searchInput);
-			
-			map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
-			
-			google.maps.event.addListener(searchBox, 'places_changed', function() {
-				var places = searchBox.getPlaces();
+        function gMapInitialize() {
+            var addressInput = document.getElementById("climaclass_user_registration_address");
+            var latitudeInput = document.getElementById("climaclass_user_registration_latitude");
+            var longitudeInput = document.getElementById("climaclass_user_registration_longitude");
+            var searchInput = document.getElementById("pac-input");
+            var mapCanvas = document.getElementById("gmap");
 
-				if (places.length == 0) {
-					return;
-				}
-				
-				for (var i = 0, marker; marker = markers[i]; i++) {
-					marker.setMap(null);
-					marker = null;
-				}
+            var markers = [];
 
-				markers = [];
-				var lat;
-				var lng;
-				var address;
-				
-				for (var i = 0, place; place = places[i]; i++) {
-				
-					var marker = new google.maps.Marker({
-						map: map,
-						title: place.name,
-						position: place.geometry.location
-					});
-					
-					console.log(place);
-					console.log("Adresse: " + place.formatted_address);
-					console.log("Latitude: " + place.geometry.location.lat());
-					console.log("Longitude: " + place.geometry.location.lng());
-					
-					address = place.formatted_address;
-					lat = place.geometry.location.lat();
-					lng = place.geometry.location.lng();
-					markers.push(marker);
-				}
-				
-				map.panTo(new google.maps.LatLng(lat, lng))
-				map.setZoom(15);
-				
-				addressInput.value = address;
-				latitudeInput.value = lat;
-				longitudeInput.value = lng;
-			});
-		}
-	</script>
+            var mapOptions = {
+                center: new google.maps.LatLng(48.858859, 2.3470599),
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(mapCanvas, mapOptions);
+            var searchBox = new google.maps.places.SearchBox(searchInput);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
+
+            google.maps.event.addListener(searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces();
+
+                if (places.length == 0) {
+                    return;
+                }
+
+                for (var i = 0, marker; marker = markers[i]; i++) {
+                    marker.setMap(null);
+                    marker = null;
+                }
+
+                markers = [];
+                var lat;
+                var lng;
+                var address;
+
+                for (var i = 0, place; place = places[i]; i++) {
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        title: place.name,
+                        position: place.geometry.location
+                    });
+
+                    console.log(place);
+                    console.log("Adresse: " + place.formatted_address);
+                    console.log("Latitude: " + place.geometry.location.lat());
+                    console.log("Longitude: " + place.geometry.location.lng());
+
+                    address = place.formatted_address;
+                    lat = place.geometry.location.lat();
+                    lng = place.geometry.location.lng();
+                    markers.push(marker);
+                }
+
+                map.panTo(new google.maps.LatLng(lat, lng))
+                map.setZoom(15);
+
+                addressInput.value = address;
+                latitudeInput.value = lat;
+                longitudeInput.value = lng;
+            });
+        }
+    </script>
 {% endblock %}
