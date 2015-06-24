@@ -11,7 +11,7 @@ fos_user_profile:
 
 admin:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix:   /admin
+    prefix:   /admin/register
     
 app:
     resource: "@AppBundle/Controller/"

@@ -27,7 +27,7 @@ class ProfilController extends Controller {
         $reportsInYear = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForCharts($class);
         $next_month = date("Y-m-d", strtotime(date('Y-m-d') . "+ 1month "));
         $datetime = new \DateTime($next_month);
-        $tmpraintab[$datetime->format('F')] = 0;
+        $start_month = $datetime->format('F');
         foreach ($reportsInYear as $report) {
             foreach ($report->getMeasures() as $measures) {
                 if ($measures->getTemperature() != "") {
@@ -61,7 +61,7 @@ class ProfilController extends Controller {
             $tabrainlevel[] = $tmptab;
         }
         print_r($tabrainlevel);
-        return array('class' => $class, 'id' => $id, 'pagination' => $pagination,'tabtemp'=>$tabtemp,'tabwind'=>$tabwind,'tabrain'=>$tabrainlevel);
+        return array('class' => $class, 'id' => $id, 'pagination' => $pagination,'tabtemp'=>$tabtemp,'tabwind'=>$tabwind,'tabrain'=>$tabrainlevel,'start_month'=>$start_month);
     }
 
     /**
