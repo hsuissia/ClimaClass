@@ -19,7 +19,6 @@ class ProfilController extends Controller {
         $tabtemp = array();
         $tabrainlevel = array();
         $tmpraintab = array();
-        //$tmpraintab = array('January' => null, 'February' => null, 'March' => null, 'April' => null, 'May' => null, 'June' => null, 'July' => null, 'August' => null, 'September' => null, 'October' => null, 'November' => null, 'December' => null);
         $tabwind = array();
         $class = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:User")->find($id);
         $reports = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findByUser($class, array('postDate' => 'desc'));
@@ -61,7 +60,6 @@ class ProfilController extends Controller {
             $tmptab['rainlevel'] = $val;
             $tabrainlevel[] = $tmptab;
         }
-         print_r($tabrainlevel);
         return array('class' => $class, 'id' => $id, 'pagination' => $pagination, 'tabtemp' => $tabtemp, 'tabwind' => $tabwind, 'tabrain' => $tabrainlevel, 'start_month' => $start_month);
     }
 
@@ -75,16 +73,15 @@ class ProfilController extends Controller {
             throw new AccessDeniedHttpException('Vous n\'avez pas l\'accès a cette page.');
         }
         $form = $this->createForm(new AccountType(), $class);
+        
         $form->add('Submit', 'submit');
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $class->upload();
-            /* plainPassword */
-            $em->persist($class);
-            $em->flush();
+            $userManager = $this->get('fos_user.user_manager');
+            $userManager->updateUser($class);
         }
-        return array('form' => $form->createView(), 'id' => $id);
+        return array('form'=>$form->createView(),'id'=>$id);
     }
+        
 
 }
