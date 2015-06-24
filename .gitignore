@@ -24,6 +24,7 @@
 
 # Assets and user uploads
 /web/uploads/
+/web/bundles/climaclassapplication/videos
 
 # PHPUnit
 /app/phpunit.xml
