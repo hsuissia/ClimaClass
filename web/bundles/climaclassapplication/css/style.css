@@ -318,7 +318,7 @@ footer li
 
 .grey p 
 {
-
+	color: 
 }
 
 .greyInput
@@ -505,6 +505,13 @@ position: absolute;
 *html .popup_block {
 position: absolute;
 }
-.list-message{
-    font-size:25px;
+
+.list-message
+{
+	font-size: 25px;
+}
+
+.navigation
+{
+	text-align: center;
 }

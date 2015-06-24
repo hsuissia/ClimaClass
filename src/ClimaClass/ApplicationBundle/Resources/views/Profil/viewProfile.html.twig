@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            {%for report in pagination%}
+           {%for report in pagination%}
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <div class="col-xs-12 cl-indicator">
@@ -71,16 +71,14 @@
                                 {%endif%} 
                             </div>
                         </div>
-                        <img src="{{asset('bundles/climaclassapplication/images/theme/thumbnail.png')}}">
+                        <img width="242px" style="width:100%;display:block;height:200px" src="{{asset('bundles/climaclassapplication/images/report/'~thumbnail_image(report.content))}}">
                         <div class="caption">
                             <h3 id="thumbnail-label">{{report.title}}<a class="anchorjs-link" href="#thumbnail-label"><span class="anchorjs-icon"></span></a></h3>
-                            <p>{{report.content|raw}}</p>
+                            <p>{{ report.content|length > 40?report.content|striptags|slice(0, 40) ~ '...' : report.content|striptags  }}</p>
                         </div>
                         <div class="col-xs-12 square">
                             <div class="col-xs-6 col-xs-offset-3">
-                                <p>
-                                <div class="button"><a href="{{path('report',{'id':report.id})}}">Read</a></div>
-                                </p>
+                                <a href="{{path('report',{'id':report.id})}}"><div class="button sbutton">Read</div></a>
                             </div>	
                         </div>
                     </div>
