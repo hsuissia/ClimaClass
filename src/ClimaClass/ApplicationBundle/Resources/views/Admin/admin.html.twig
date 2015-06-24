@@ -29,85 +29,84 @@
 
     <!-- MODAL START-->
     <div id="popup1" class="popup_block">
-       {{form_start(form)}}
-            <div class="users form">
+        {{form_start(form)}}
+        <div class="users form">
 
-                <fieldset>
-                    <legend>
-                        Add a user
-                    </legend>
+            <fieldset>
+                <legend>
+                    Add a user
+                </legend>
 
-                </fieldset>
-                <div class="blue col-xs-12">
-                    <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Informations</h3>
-                </div>
-                <div class="col-xs-12 grey">
-                    <div class="col-xs-6">
-                        {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'} })}}
-                        {{form_errors(form.email)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.username, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Username'} })}}
-                        {{form_errors(form.username)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Password'} })}}
-                        {{form_errors(form.plainPassword.first)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm Password'} })}}
-                        {{form_errors(form.plainPassword.second)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'} })}}
-                        {{form_errors(form.lastname)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'} })}}
-                        {{form_errors(form.firstname)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'} })}}
-                        {{form_errors(form.establishment)}}
-                    </div>
-                    <div class="col-xs-6">					
-                        {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'} })}}
-                        {{form_errors(form.class)}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{form_widget(form.address, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Address'} })}}
-                        {{form_errors(form.address)}}
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label>Main language:</label>	
-                            {{form_widget(form.main_language, {'attr': {'class': 'form-control'} })}}
-                            {{form_errors(form.main_language)}}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label>Language:</label>	
-                            {{form_widget(form.languages, {'attr': {'class': 'form-control'} })}}
-                            {{form_errors(form.languages)}}
-                        </div>
-                    </div>
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label>Roles:</label>	
-                            {{form_widget(form.roles[0], {'attr': {'class': 'form-control'} })}}
-                            {{form_errors(form.roles[0])}}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                    <div class="row" id="gmap" style="height: 200px;">					
-                    </div>
-                </div>
-                
-                {{form_widget(form.Add, {'attr': {'class': 'buttong save col-xs-12'} })}}
+            </fieldset>
+            <div class="blue col-xs-12">
+                <h3><img src="{{asset('bundles/climaclassapplication/images/theme/Locked_padlock_32.png')}}"> Informations</h3>
             </div>
+            <div class="col-xs-12 grey">
+                <div class="col-xs-6">
+                    {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'} })}}
+                    {{form_errors(form.email)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.username, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Username'} })}}
+                    {{form_errors(form.username)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Password'} })}}
+                    {{form_errors(form.plainPassword.first)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm Password'} })}}
+                    {{form_errors(form.plainPassword.second)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'} })}}
+                    {{form_errors(form.lastname)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'} })}}
+                    {{form_errors(form.firstname)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'} })}}
+                    {{form_errors(form.establishment)}}
+                </div>
+                <div class="col-xs-6">					
+                    {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'} })}}
+                    {{form_errors(form.class)}}
+                </div>
+                <div class="col-xs-6">
+                    {{form_widget(form.address, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Address'} })}}
+                    {{form_errors(form.address)}}
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>Main language:</label>	
+                        {{form_widget(form.main_language, {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.main_language)}}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>Language:</label>	
+                        {{form_widget(form.languages, {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.languages)}}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>Roles:</label>	
+                        {{form_widget(form.roles[0], {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.roles[0])}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                <div class="row" id="gmap" style="height: 200px;">					
+                </div>
+            </div>
+            {{form_widget(form.Add, {'attr': {'class': 'buttong save col-xs-12'} })}}
+        </div>
         {{form_end(form)}}	
     </div>
     <!-- MODAL END-->
@@ -187,6 +186,10 @@
                 latitudeInput.value = lat;
                 longitudeInput.value = lng;
             });
+        }
+        document.getElementById("pac-input").onkeypress = function (evenement) {
+            //renvoie true pour toute autre touche que Enter
+            return (evenement.keyCode != 13);
         }
     </script>
 {% endblock %}
