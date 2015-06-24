@@ -26,10 +26,11 @@ security:
             anonymous: ~
 
     access_control:
+        - { path: ^/admin/register/confirmed, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/register/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
         - { path: ^/manage_report/, role: ROLE_TEACHER }
         - { path: ^/conversation/, role: ROLE_TEACHER }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }    
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

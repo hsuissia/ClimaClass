@@ -1,18 +1,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
 {#
-<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
-    {{ form_widget(form, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'}}) }}
-    
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-</form>#}
+<div id="popup1" class="popup_block">
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+        {{ form_widget(form, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'}}) }}
 
-
+        <div>
+            <input type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+    </form>
+</div>
+#}
 <!-- MODAL START-->
 <div id="popup1" class="popup_block">
-    <form action="{{ path('fos_user_registration_register') }}" method="POST" class="fos_user_registration_register">
+    <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
         <div class="users form">
 
             <fieldset>
@@ -26,48 +26,60 @@
             </div>
             <div class="col-xs-12 grey">
                 <div class="col-xs-6">
-                    {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'}})}}
+                    {{form_widget(form.email, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Email'} })}}
+                    {{form_errors(form.email)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.username, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Username'}})}}
+                    {{form_widget(form.username, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Username'} })}}
+                    {{form_errors(form.username)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Password'}})}}
+                    {{form_widget(form.plainPassword.first, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Password'} })}}
+                    {{form_errors(form.plainPassword.first)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm Password'}})}}
+                    {{form_widget(form.plainPassword.second, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Confirm Password'} })}}
+                    {{form_errors(form.plainPassword.second)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'}})}}
+                    {{form_widget(form.lastname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Lastname'} })}}
+                    {{form_errors(form.lastname)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'}})}}
+                    {{form_widget(form.firstname, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Firstname'} })}}
+                    {{form_errors(form.firstname)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'}})}}
+                    {{form_widget(form.establishment, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Establishment'} })}}
+                    {{form_errors(form.establishment)}}
                 </div>
                 <div class="col-xs-6">					
-                    {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'}})}}
+                    {{form_widget(form.class, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Class'} })}}
+                    {{form_errors(form.class)}}
                 </div>
                 <div class="col-xs-6">
-                    {{form_widget(form.address, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Address'}})}}
+                    {{form_widget(form.address, {'attr': {'class': 'form-control greyInput', 'placeholder' : 'Address'} })}}
+                    {{form_errors(form.address)}}
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label>Main language:</label>	
-                        {{form_widget(form.main_language, {'attr': {'class': 'form-control'}})}}
+                        {{form_widget(form.main_language, {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.main_language)}}
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label>Language:</label>	
-                        {{form_widget(form.languages, {'attr': {'class': 'form-control'}})}}
+                        {{form_widget(form.languages, {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.languages)}}
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label>Roles:</label>	
-                        {{form_widget(form.roles[0], {'attr': {'class': 'form-control'}})}}
+                        {{form_widget(form.roles[0], {'attr': {'class': 'form-control'} })}}
+                        {{form_errors(form.roles[0])}}
                     </div>
                 </div>
             </div>
