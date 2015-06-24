@@ -12,6 +12,7 @@
 {% block stylesheets %}
     {{parent()}}
     <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/ui/trumbowyg.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bundles/climaclassapplication/css/bootstrap-datepicker3.min.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -27,68 +28,31 @@
                     <img src="{{asset('bundles/climaclassapplication/images/theme/Pen_on_square_of_paper_interface_symbol_32.png')}}" width="32px" height="32px">
                 </div>
                 <div class="form-group has-success col-xs-11">
-                    {{form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder' : 'Title'}})}}
+                    {{form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder' : 'Title'} }) }}
                 </div>
             </div>
 
         </div>
         <div class="row">
-            {{form_widget(form.content,{'attr': {'class':'col-xs-12'}})}}
+            {{form_widget(form.content,{'attr': {'class':'col-xs-12'} }) }}
         </div>
     </div>
 
 
-    <div class="indicators_add col-xs-12" id="indicators_tag" style="margin-top: 10px;">
-        <div class="measures" data-prototype="{{ macro.prototype(form.measures.vars.prototype|e) }}">
+    <div class="indicators_add col-xs-12 col-md-6" id="indicators_tag" style="margin-top: 10px;">
+         {#<div class="measures" data-prototype="{{ macro.prototype(form.measures.vars.prototype|e) }}">
            {% for measure in form.measures %}
                 {{ macro.prototype(measure) }}
             {% endfor %}
             <button class="add-collection">Add measures</button>
-        </div> 
+        </div> #}
         
-        {#{{form_widget(form.measures)}}#}
-
- {#
-        <div class="indicators_back col-md-2">
-            <div class="has-success">
-                <label class="control-label" for="inputSuccess1">Rain</label>						  
-                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="has-success">
-                <label class="control-label" for="inputSuccess1">Temperature</label>						  
-                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="has-success">
-                <label class="control-label" for="inputSuccess1">Wind</label>						  
-                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="has-success">
-                <label class="control-label" for="inputSuccess1">Wind direction</label>						  
-                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="has-success">
-                <label class="control-label" for="inputSuccess1">Date</label>						  
-                <input type="text" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-            </div>
-        </div>
-        <div class="col-xs-2" style="text-align:center; margin-top: 10px;"><img id="delete" src="{{asset('bundles/climaclassapplication/images/theme/delete.png')}}"></div>#}
+        {{form_widget(form.measures)}}
     </div>
-    <div class="col-xs-12" style="text-align:center; margin-top: 10px;"><img id="add" src="{{asset('bundles/climaclassapplication/images/theme/add.png')}}"></div>
-    <div class="col-xs-12">
-        <div class="has-success">
-            <label class="control-label" for="inputSuccess1">Video</label>						  
-            <input type="file" class="form-control" id="inputSuccess1" placeholder="Your Measures here !">
-        </div>
+    <div class="indicators_add col-xs-12 col-md-6" id="indicators_tag" style="margin-top: 10px;">
+    {{form_widget(form.videos)}}
     </div>
-    <p><div class="buttong col-xs-12"><a href="">Save</a></div></p>
+    {{form_widget(form.Save, {'attr': {'class': 'buttong save col-xs-12', 'placeholder' : 'Title'} }) }}
 
 {{form_end(form)}}
 
@@ -98,6 +62,7 @@
     {{parent()}}
     <script src="{{asset('bundles/climaclassapplication/js/trumbowyg.min.js')}}"></script>
     <script src="{{asset('bundles/climaclassapplication/js/plugin/upload/trumbowyg.upload.js')}}"></script>
+    <script src="{{asset('bundles/climaclassapplication/js/bootstrap-datepicker.min.js')}}"></script>
 
     <script>
         $(document).ready(function () {
@@ -117,8 +82,7 @@
                     '|', 'btnGrp-lists',
                     '|', 'horizontalRule']
             });
-
-        {#var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
+        var $containerMeasure = $('div#climaclass_applicationbundle_report_measures');
             var $addLinkMeasure = $('<a href="#" id="add_measure" class="btn btn-default">Add new measures</a>');
             $containerMeasure.append($addLinkMeasure);
 
@@ -142,6 +106,9 @@
                 addDeleteLinkMeasure($prototype);
                 $containerMeasure.append($prototype);
                 indexMeasure++;
+                $('.datepicker').datepicker({
+                    format: "yyyy-mm-dd"
+                });
             }
 
             function addDeleteLinkMeasure($prototype) {
@@ -153,7 +120,7 @@
                     e.preventDefault();
                     return false;
                 });
-            }#}
+            }
 
             /****************************************************************************************/
 

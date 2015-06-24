@@ -235,7 +235,7 @@ footer li
 	border-radius: 0!important;
 }
 
-.green .has-success, .form-control
+.green .has-success
 {
 	border-color: #FFF!important;
 }
@@ -318,7 +318,6 @@ footer li
 
 .grey p 
 {
-	color: 
 }
 
 .greyInput
@@ -514,4 +513,11 @@ position: absolute;
 .navigation
 {
 	text-align: center;
+}
+.save {
+    background-color: transparent;
+}
+.file {
+    height: 38px;
+    padding: 0 12px;
 }
