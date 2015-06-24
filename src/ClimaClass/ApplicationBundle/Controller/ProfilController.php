@@ -25,6 +25,9 @@ class ProfilController extends Controller {
         $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate($reports, $request->query->getInt('page', 1), 3);
         $reportsInYear = $this->getDoctrine()->getRepository("ClimaClassApplicationBundle:Report")->findReportForCharts($class);
+        $next_month = date("Y-m-d", strtotime(date('Y-m-d') . "+ 1month "));
+        $datetime = new \DateTime($next_month);
+        $tmpraintab[$datetime->format('F')] = 0;
         foreach ($reportsInYear as $report) {
             foreach ($report->getMeasures() as $measures) {
                 if ($measures->getTemperature() != "") {
@@ -57,6 +60,7 @@ class ProfilController extends Controller {
             $tmptab['rainlevel'] = $val;
             $tabrainlevel[] = $tmptab;
         }
+        print_r($tabrainlevel);
         return array('class' => $class, 'id' => $id, 'pagination' => $pagination,'tabtemp'=>$tabtemp,'tabwind'=>$tabwind,'tabrain'=>$tabrainlevel);
     }
 

@@ -31,7 +31,8 @@ class ReportRepository extends EntityRepository {
         return $this->getEntityManager()
                         ->createQuery("SELECT r
                     FROM ClimaClassApplicationBundle:Report r
-                    WHERE r.postDate BETWEEN :nowyearprev AND :now AND r.user = :user")
+                    WHERE r.postDate BETWEEN :nowyearprev AND :now AND r.user = :user
+                    ORDER BY r.postDate DESC")
                         ->setParameter("now", $date)
                         ->setParameter("nowyearprev", $date_year_prev)
                         ->setParameter("user", $user)
