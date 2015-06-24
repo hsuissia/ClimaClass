@@ -50,12 +50,6 @@
                 </div>
             </div>
 
-            <div class="col-xs-12">
-                <div id="temperatureGraph"></div>
-                <div id="rainGraph"></div>
-                <div id="windGraph"></div>
-            </div>
-
             {%for report in pagination%}
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
@@ -96,9 +90,21 @@
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}
             </div>
+			
+			<div class="col-xs-12">
+                <div id="temperatureGraph"></div>
+                <div id="rainGraph"></div>
+                <div id="windGraph"></div>
+            </div>
         </div>
+		
+		{{dump(tabtemp)}}
+		{{dump(tabwind)}}
+		{{dump(tabrain)}}
     {% endblock %}
-
+	
+	
+	
     {% block javascripts %}
         {{parent()}}
         <script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -121,15 +127,19 @@
                             });
                     }
         </script>
-        <script type="text/javascript">
+        <script type="text/javascript">			
             $(function () {
 				$('#temperatureGraph').css("height", "300px").highcharts({
 					title: {
 						text: 'Temperature',
-						x: - 20 //center
+						x: - 20
 					},
 					xAxis: {
-						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+						type : 'datetime',
+						dateTimeLabelFormats: {
+							day: '%e %b %y',
+							month: '%b %y'
+						},
 					},
 					yAxis: {
 						title: {
@@ -137,7 +147,14 @@
 						}
 					},
 					tooltip: {
-						valueSuffix: '°C'
+						headerFormat: '<p style="font-size:10px">{point.key}</p><br />',
+						pointFormat: 	'<table>' +
+											'<tr>' +
+												'<td>{series.name}: </td>' +
+												'<td><b>{point.y:.1f}°C</b></td>' +
+											'</tr>' +
+										'</table>',
+						shared: true
 					},
 					legend: {
 						layout: 'vertical',
@@ -145,65 +162,162 @@
 						verticalAlign: 'middle',
 						borderWidth: 0
 					},
+					plotOptions: {
+						series: {
+							pointStart: Date.UTC(2010, 0, 1) // 1 jour de start_month
+						}
+					},
 					series: [{
-						name: 'Tokyo',
-						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+						name: "Temperature",
+						data: [
+							[Date.UTC(1970, 9, 21), 0],
+							[Date.UTC(1970, 10, 4), 0.28],
+							[Date.UTC(1970, 10, 9), 0.25],
+							[Date.UTC(1970, 10, 27), 0.2],
+							[Date.UTC(1970, 11, 2), 0.28],
+							[Date.UTC(1970, 11, 26), 0.28],
+							[Date.UTC(1970, 11, 29), 0.47],
+							[Date.UTC(1971, 0, 11), 0.79],
+							[Date.UTC(1971, 0, 26), 0.72],
+							[Date.UTC(1971, 1, 3), 1.02],
+							[Date.UTC(1971, 1, 11), 1.12],
+							[Date.UTC(1971, 1, 25), 1.2],
+							[Date.UTC(1971, 2, 11), 1.18],
+							[Date.UTC(1971, 3, 11), 1.19],
+							[Date.UTC(1971, 4, 1), 1.85],
+							[Date.UTC(1971, 4, 5), 2.22],
+							[Date.UTC(1971, 4, 19), 1.15],
+							[Date.UTC(1971, 5, 3), 0]
+						]
 					}]
 				});
+				
 				$('#rainGraph').css("height", "300px").highcharts({
+					chart: {
+						type: 'column'
+					},
 					title: {
-						text: 'Rain level',
-						x: - 20 //center
+						text: 'Rain Level'
 					},
 					xAxis: {
-						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+						categories: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+						crosshair: true
 					},
 					yAxis: {
+						min: 0,
 						title: {
-							text: 'Rain level (mm)'
+							text: 'Rain Level (mm)'
 						}
 					},
 					tooltip: {
-						valueSuffix: 'mm'
+						headerFormat: '<p style="font-size:10px">{point.key}</p><br />',
+						pointFormat: 	'<table>' +
+											'<tr>' +
+												'<td>{series.name}: </td>' +
+												'<td><b>{point.y} mm</b></td>' +
+											'</tr>' +
+										'</table>',
+						shared: true
 					},
-					legend: {
-						layout: 'vertical',
-						align: 'right',
-						verticalAlign: 'middle',
-						borderWidth: 0
-					},
-					series: [{
-						name: 'Tokyo',
-						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-					}]
-				});
-				$('#windGraph').css("height", "300px").highcharts({
-					title: {
-						text: 'Wind speed and direction',
-						x: - 20 //center
-					},
-					xAxis: {
-						categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-					},
-					yAxis: {
-						title: {
-							text: 'Speed (km/h)'
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
 						}
 					},
-					tooltip: {
-						valueSuffix: 'km/h'
-					},
-					legend: {
-						layout: 'vertical',
-						align: 'right',
-						verticalAlign: 'middle',
-						borderWidth: 0
-					},
 					series: [{
-						name: 'Tokyo',
-						data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+						name: 'Rain Level',
+						data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
 					}]
 				});
+				
+				$('#windGraph').css("height", "500px").highcharts({
+					chart: {
+						polar: true
+					},
+					title: {
+						text: 'Wind'
+					},
+					pane: {
+						startAngle: 0,
+						endAngle: 360
+					},
+					xAxis: {
+						tickInterval: 45,
+						min: 0,
+						max: 360,
+						labels: {
+							formatter: function () {
+								return this.value + '°';
+							}
+						}
+					},
+					yAxis: {
+						min: 0
+					},					
+					tooltip: {
+						headerFormat: '<p style="font-size:10px">{point.key}</p><br />',
+						pointFormat: 	'<table>' +
+											'<tr>' +
+												'<td>Speed: </td>' +
+												'<td><b>{point.y:.1f} km/h</b></td>' +
+											'</tr>' +
+											'<br/>' +
+											'<tr>' +
+												'<td>Direction: </td>' +
+												'<td><b>{point.x}°</b></td>' +
+											'</tr>' +
+										'</table>',
+						shared: true
+					},					
+					series: [{
+						type: 'line',
+						name: 'Wind',
+						lineWidth : 0,
+						states: {
+							hover:{
+								enabled : false,
+							}
+						},
+						data:[ 	
+							{
+								name:"01/01/2010",
+								x:180,y:20
+							},{
+								name:"01/02/2010",
+								x:150,y:58
+							},{
+								name:"01/03/2010",
+								x:358,y:29
+							},{
+								name:"01/04/2010",
+								x:85,y:180
+							},{
+								name:"01/05/2010",
+								x:128,y:30
+							},{
+								name:"01/06/2010",
+								x:98,y:87
+							},{
+								name:"01/07/2010",
+								x:89,y:94
+							},{
+								name:"01/08/2010",
+								x:150,y:110
+							},{
+								name:"01/09/2010",
+								x:34,y:98
+							},{
+								name:"01/10/2010",
+								x:2,y:75
+							},{
+								name:"01/11/2010",
+								x:240,y:96
+							}
+						]
+					}]
+				});			
             });
         </script>
     {% endblock %}
