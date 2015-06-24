@@ -4,7 +4,6 @@ namespace ClimaClass\ApplicationBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 
 class AccountType extends AbstractType {
 
@@ -15,11 +14,7 @@ class AccountType extends AbstractType {
                 ->remove('username')
                 ->add('plainPassword', 'repeated', array(
                     'type' => 'password',
-                    'required'=>false,
-                    'options' => array('translation_domain' => 'FOSUserBundle'),
-                    'first_options' => array('label' => 'form.new_password'),
-                    'second_options' => array('label' => 'form.new_password_confirmation'),
-                    'invalid_message' => 'fos_user.password.mismatch',
+                    'required'=>false
                 ))
                 ->add('establishment')
                 ->add('class')
