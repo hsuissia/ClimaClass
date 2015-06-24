@@ -205,7 +205,14 @@
 						text: 'Rain Level'
 					},
 					xAxis: {
-						categories: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+						categories: [
+							{%for r in tabrain%}
+							'{{r.month}}'
+							{%if not loop.last%}
+							,
+							{%endif%}
+							{%endfor%}
+						],
 						crosshair: true
 					},
 					yAxis: {
@@ -223,7 +230,7 @@
 											'</tr>' +
 										'</table>',
 						shared: true
-					},
+					},				
 					plotOptions: {
 						column: {
 							pointPadding: 0.2,
@@ -232,7 +239,18 @@
 					},
 					series: [{
 						name: 'Rain Level',
-						data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+						data: [
+						{%for r in tabrain%}
+							{%if r.rainlevel is null %}
+								null
+							{%else%}
+								{{r.rainlevel}}
+							{%endif%}
+							{%if not loop.last%}
+							,
+							{%endif%}
+						{%endfor%}
+						]
 
 					}]
 				});
@@ -285,41 +303,16 @@
 								enabled : false,
 							}
 						},
-						data:[ 	
+						data:[
+						{%for w in tabwind%}
 							{
-								name:"01/01/2010",
-								x:180,y:20
-							},{
-								name:"01/02/2010",
-								x:150,y:58
-							},{
-								name:"01/03/2010",
-								x:358,y:29
-							},{
-								name:"01/04/2010",
-								x:85,y:180
-							},{
-								name:"01/05/2010",
-								x:128,y:30
-							},{
-								name:"01/06/2010",
-								x:98,y:87
-							},{
-								name:"01/07/2010",
-								x:89,y:94
-							},{
-								name:"01/08/2010",
-								x:150,y:110
-							},{
-								name:"01/09/2010",
-								x:34,y:98
-							},{
-								name:"01/10/2010",
-								x:2,y:75
-							},{
-								name:"01/11/2010",
-								x:240,y:96
+								name:"{{w.date}}",
+								x:{{w.direction}},y:{{w.speed}}
 							}
+							{%if not loop.last%}
+							,
+							{%endif%}
+						{%endfor%}
 						]
 					}]
 				});			
