@@ -15,9 +15,9 @@ class TwigExtension extends \Twig_Extension
     }
     public function thumbnail_image($content)
     {
-         if(preg_match_all('/src=(["\'])(.*?)\1/mi', $content, $matches)==true) {
-            
-            return str_replace('"','',(str_replace('src="','',(str_replace('/ClimaClass/web/bundles/climaclassapplication/libraries/../images/report/','',$matches[0][0])))));
+         if(preg_match_all('/src=(["\'])(.*?)\1/mi', $content, $matches)) {
+			$temp = explode("/", $matches[0][0]);
+			return rtrim($temp[count($temp) - 1], '"');
          }
          else {
              return "default.png";
