@@ -125,7 +125,8 @@ class User extends BaseUser {
         }
 
         // On récupère le nom original du fichier de l'internaute
-        $name = $this->file->getClientOriginalName();
+        $ext = explode('.',$this->file->getClientOriginalName());
+        $name = uniqid().'.'.$ext[1];
 
 
         // On déplace le fichier envoyé dans le répertoire de notre choix

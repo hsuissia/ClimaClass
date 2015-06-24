@@ -83,6 +83,7 @@ class ProfilController extends Controller {
         $form->handleRequest($request);
         if ($form->isValid()) {
             $userManager = $this->get('fos_user.user_manager');
+            $class->upload();
             $userManager->updateUser($class);
         }
         return array('form'=>$form->createView(),'id'=>$id);

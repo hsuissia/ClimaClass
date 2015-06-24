@@ -53,7 +53,7 @@ class Video {
         }
         // On récupère le nom original du fichier de l'internaute
         $ext = explode('.',$this->file->getClientOriginalName());
-        $name = uniqid().$ext[1];
+        $name = uniqid().'.'.$ext[1];
 
 
         // On déplace le fichier envoyé dans le répertoire de notre choix

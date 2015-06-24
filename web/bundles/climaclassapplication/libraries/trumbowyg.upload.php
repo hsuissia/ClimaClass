@@ -24,9 +24,10 @@ define("UPLOADDIR", "../images/report/");
 // Detect if it is an AJAX request
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     $file = array_shift($_FILES);
-
-    if(move_uploaded_file($file['tmp_name'], UPLOADDIR . basename($file['name']))) {
-        $file = dirname($_SERVER['PHP_SELF']) . '/' . UPLOADDIR . $file['name'];
+    $ext = explode('.',basename($file['name']));
+    $name = uniqid().".".$ext[1];
+    if(move_uploaded_file($file['tmp_name'], UPLOADDIR . $name)) {
+        $file = dirname($_SERVER['PHP_SELF']) . '/' . UPLOADDIR . $name;
         $data = array(
             'message' => 'uploadSuccess',
             'file'    => $file,
