@@ -38,7 +38,7 @@
         },
 
         upload: {
-            serverPath: '../../../bundles/climaclassapplication/libraries/trumbowyg.upload.php'
+            serverPath: '../../bundles/climaclassapplication/libraries/trumbowyg.upload.php'
         },
 
         opts: {

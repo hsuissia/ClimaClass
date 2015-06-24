@@ -64,6 +64,7 @@ class ReportController extends Controller
                $measure->setReport($report);
            }
            foreach($report->getVideos() as $video){
+               
                $video->upload();
                $video->setReport($report);
            }
