@@ -27,7 +27,7 @@ class ReportRepository extends EntityRepository {
 
     public function findReportForCharts($user) {
         $date = date('Y-m-d');
-        $date_year_prev = date("Y-m-01", strtotime($date . "- 1 years + 1month "));
+        $date_year_prev = date("Y-m-01", strtotime($date . " -1 year +1 month "));
         return $this->getEntityManager()
                         ->createQuery("SELECT r
                     FROM ClimaClassApplicationBundle:Report r

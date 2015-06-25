@@ -32,12 +32,13 @@ class ProfilController extends Controller {
         $next_month = date("Y-m-d", strtotime(date('Y-m-d') . "- 1years + 1month "));
         $datetime_year_before = new \DateTime($next_month);
         $datetime_today = new \DateTime(date('Y-m-d'));
+		
         while($datetime_year_before->getTimestamp() <= $datetime_today->getTimestamp()){
             $tmpraintab[$datetime_year_before->format('F')] = null;
             $datetime_year_before->modify("+ 1months");
         }
-        $start_month = $datetime_year_before->format('Y-m');
-        echo $start_month;
+        $start_month = $datetime_year_before->format('Y-m-d');
+		
         foreach ($reportsInYear as $report) {
             foreach ($report->getMeasures() as $measures) {
                 if ($measures->getTemperature() != "") {
