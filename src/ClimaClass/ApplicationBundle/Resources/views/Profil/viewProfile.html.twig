@@ -173,6 +173,9 @@
 					series: [{
 						name: "Temperature",
 						lineWidth : 2,
+						events: {
+							legendItemClick: function(evt){return false;}
+						},
 						data: [
 						{%for t in tabtemp%}
 							{%set d = t.date|split("-")%}
@@ -229,6 +232,9 @@
 					},
 					series: [{
 						name: 'Rain Level',
+						events: {
+							legendItemClick: function(evt){return false;}
+						},
 						data: [
 						{%for r in tabrain%}
 							{%if r.rainlevel is null %}
@@ -294,6 +300,9 @@
 							hover:{
 								enabled : false,
 							}
+						},
+						events: {
+							legendItemClick: function(evt){return false;}
 						},
 						data:[
 						{%for w in tabwind%}
