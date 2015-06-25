@@ -16,7 +16,7 @@
 					{%if message.user == app.user%}				
 					<div class="col-xs-12 comment conversation">
 						<div class="row">
-							<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+							<div class="col-md-1 nopadding"><img class="avatar" width="88" height="88" src="{{asset('bundles/climaclassapplication/images/users/'~message.user.picture)}}"></div>
 							<div class="col-xs-11 nopadding conversation-back">
 								<p>{{message.body}}</p>
 								<p>{{message.postDate|date('Y-m-d')}} - <strong>{%if message.user is not null%}{{message.user.lastname}} {{message.user.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
@@ -30,7 +30,7 @@
 								<p>{{message.body}}</p>
 								<p>{{message.postDate|date('Y-m-d')}} - <strong>{%if message.user is not null%}{{message.user.lastname}} {{message.user.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
 							</div>
-							<div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+							<div class="col-md-1 nopadding"><img class="avatar" width="88" height="88" src="{{asset('bundles/climaclassapplication/images/users/'~message.user.picture)}}"></div>
 						</div>
 					</div>
 					{%endif%}

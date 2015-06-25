@@ -8,7 +8,7 @@
             {%for conversation in pagination%}
                 <div class="col-xs-12 comment conversation">
                     <div class="row">
-                        <div class="col-md-1 nopadding"><img class="avatar" src="{{asset('bundles/climaclassapplication/images/theme/avatar.png')}}"></div>
+                        <div class="col-md-1 nopadding"><img class="avatar" width="92" height="92" src="{{asset('bundles/climaclassapplication/images/users/'~conversation.userCreator.picture)}}"></div>
                         <div class="col-xs-11 nopadding">
                             <h3><a href="{{path('display_conversation',{'id':conversation.id})}}">{{conversation.subject}}</a></h3>
                             <p>{{conversation.messages[0].postDate|date('Y-m-d')}} - <strong><p>{%if conversation.userCreator is not null %}{{conversation.userCreator.lastname}} {{conversation.userCreator.firstname}}{%else%} Anonymous {%endif%}</strong></p>							
