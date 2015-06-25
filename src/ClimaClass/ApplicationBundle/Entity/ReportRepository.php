@@ -27,13 +27,14 @@ class ReportRepository extends EntityRepository {
 
     public function findReportForCharts($user) {
         $date = date('Y-m-d');
+		$tommorow = date("Y-m-d", strtotime($date . " +1 day "));
         $date_year_prev = date("Y-m-01", strtotime($date . " -1 year +1 month "));
         return $this->getEntityManager()
                         ->createQuery("SELECT r
                     FROM ClimaClassApplicationBundle:Report r
                     WHERE r.postDate BETWEEN :nowyearprev AND :now AND r.user = :user
                     ORDER BY r.postDate DESC")
-                        ->setParameter("now", $date)
+                        ->setParameter("now", $tommorow)
                         ->setParameter("nowyearprev", $date_year_prev)
                         ->setParameter("user", $user)
                         ->getResult();

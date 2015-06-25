@@ -44,13 +44,13 @@
 	{{form_start(form)}}
 	<div class="col-xs-12 conversation-area">
 		<div class="row">
-			{{form_widget(form.body, {'attr' :{'class': 'form-control', 'rows' : '3', 'placeholder' : 'Your message'}})}}
+			{{form_widget(form.body, {'attr' :{'class': 'form-control', 'rows' : '6', 'placeholder' : 'Your message'}})}}
 		</div>
 	</div>
 	
 	<div class="col-xs-12" style="margin-bottom: 15px;">
 		<div class="row">
-			{{form_widget(form.Send, {'attr' :{'class': 'buttong'}})}}
+			{{form_widget(form.Send, {"attr" : {"class" : "buttong save col-xs-12"}})}}
 		</div>
 	</div>
 	{{form_end(form)}}

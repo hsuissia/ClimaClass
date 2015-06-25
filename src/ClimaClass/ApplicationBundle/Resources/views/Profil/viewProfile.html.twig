@@ -128,8 +128,9 @@
         <script type="text/javascript">
 			
             $(function () {
+			
 				var startMonth = new String("{{start_month}}").split("-");
-				
+				{%if tabtemp is not empty%}
 				$('#temperatureGraph').css("height", "300px").highcharts({
 					title: {
 						text: 'Temperature',
@@ -183,7 +184,9 @@
 						]
 					}]
 				});
+				{%endif%}
 				
+				{%if not isTabRainEmpty(tabrain)%}
 				$('#rainGraph').css("height", "300px").highcharts({
 					chart: {
 						type: 'column'
@@ -241,7 +244,9 @@
 
 					}]
 				});
+				{%endif%}
 				
+				{%if tabwind is not empty%}
 				$('#windGraph').css("height", "500px").highcharts({
 					chart: {
 						polar: true
@@ -302,7 +307,8 @@
 						{%endfor%}
 						]
 					}]
-				});			
+				});
+				{%endif%}
             });
         </script>
     {% endblock %}

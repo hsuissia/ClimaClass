@@ -11,6 +11,7 @@ class TwigExtension extends \Twig_Extension
     {
         return array(
             'thumbnail_image' => new \Twig_Function_Method($this, 'thumbnail_image'),
+            'isTabRainEmpty' => new \Twig_Function_Method($this, 'isTabRainEmpty'),
         );
     }
     public function thumbnail_image($content)
@@ -24,6 +25,18 @@ class TwigExtension extends \Twig_Extension
          }
         
     }
+	
+	public function isTabRainEmpty($tab){
+		$i = 0;
+		$isNull = true;
+		
+		while($isNull && $i < count($tab) - 1){
+			$isNull = is_null($tab[$i]["rainlevel"]);
+			$i++;
+		}
+		
+		return $isNull;
+	}
     
     public function getName()
     {

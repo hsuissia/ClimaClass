@@ -29,8 +29,7 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li style="margin-right: 10px;"><p><div class="buttong"><a href="{{path('compare')}}">Compare</a></div></p></li>						
+                    <ul class="nav navbar-nav">						
                                 {%if app.user is not null%}
                             <li style="margin-right: 10px;"><p><div class="buttong"><a href="{{path('create_report')}}">Add report</a></div></p></li>
                                 {%endif%}
