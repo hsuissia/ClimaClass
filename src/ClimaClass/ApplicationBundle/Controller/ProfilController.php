@@ -39,8 +39,6 @@ class ProfilController extends Controller {
         }
         $start_month = $datetime_year_before->format('Y-m-d');
 		
-		var_dump($reportsInYear);
-		
         foreach ($reportsInYear as $report) {
             foreach ($report->getMeasures() as $measures) {
                 if ($measures->getTemperature() != "") {
@@ -68,10 +66,6 @@ class ProfilController extends Controller {
             $tmptab['rainlevel'] = $val;
             $tabrainlevel[] = $tmptab;
         }
-		
-		var_dump($tabtemp);
-		var_dump($tabwind);
-		var_dump($tabrainlevel);
 		
         return array('class' => $class, 'id' => $id, 'pagination' => $pagination, 'tabtemp' => $tabtemp, 'tabwind' => $tabwind, 'tabrain' => $tabrainlevel, 'start_month' => $start_month);
     }

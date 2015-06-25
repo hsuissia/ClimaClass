@@ -30,7 +30,7 @@ class TwigExtension extends \Twig_Extension
 		$i = 0;
 		$isNull = true;
 		
-		while($isNull && $i < count($tab) - 1){
+		while($isNull && $i < count($tab)){
 			$isNull = is_null($tab[$i]["rainlevel"]);
 			$i++;
 		}
